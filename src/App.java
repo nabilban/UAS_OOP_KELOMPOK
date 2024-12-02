@@ -1,10 +1,49 @@
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
+import models.Movie;
+import services.MovieManagement;
 import utils.ScreenCleaning;
 
 public class App {
     public static void main(String[] args) throws Exception {
         var scanner = new Scanner(System.in);
+
+        var movieManagement = new MovieManagement();
+        movieManagement.movies.add(
+            new Movie(
+                "Star Wars: Episode III - Revenge of the Sith", 
+                "George Lucas", 
+                LocalDate.of(2005, 05, 12), 
+                true, 
+                new ArrayList<String>(List.of(
+                    "Action", 
+                    "Advanture", 
+                    "Fantasy", 
+                    "Sci-Fi"
+                )), 
+                8
+            )
+        );
+
+        movieManagement.movies.add(
+            new Movie(
+                "Frozen", 
+                "Chris Buck, Jennifer Lee", 
+                LocalDate.of(2013, 11, 29), 
+                false, 
+                new ArrayList<String>(List.of(
+                    "Animation", 
+                    "Advanture", 
+                    "Fantasy", 
+                    "Family",
+                    "Comedy"
+                )), 
+                8
+            )
+        );
 
         ScreenCleaning.ClearScreen();
         System.out.println("== Selamat Datang di Nova Cinema ==");
@@ -24,7 +63,7 @@ public class App {
             switch (inputOption) {
                 case 1:
                     ScreenCleaning.ClearScreen();
-                    System.out.println("Masuk sebagai penonton");
+                    movieManagement.registerAsViewer();
                     break;
                 case 2:
                     ScreenCleaning.ClearScreen();
