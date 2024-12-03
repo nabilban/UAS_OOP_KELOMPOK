@@ -41,12 +41,16 @@ public class App {
                                         var age = scanner.nextInt();
                                         System.out.println("gender Anda: ");
                                         var gender = scanner.next();
-
                                         var audience = new models.Audiance(name, age, gender, false, null);
                                         movieManagement.registerAsViewer(audience);
                                         break;
                                 case 2:
                                         ScreenCleaning.ClearScreen();
+                                        // TODO : Masuk sebagai pegawai , Masih belum diimplementasikan
+                                        // pegawai bisa tambah stock makanan dan minuman
+                                        // pefawai bisa tambah film
+                                        // Pegawai bisa melihat log penjualan makanan dan minuman
+                                        // Pegawai bisa melihat log penjualan tiket
                                         System.out.println("Masuk sebagai pegawai");
                                         break;
                                 case 3:
