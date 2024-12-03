@@ -3,205 +3,199 @@ package services;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import abstracts.Items;
+import failures.Failures;
 import models.*;
+import abstracts.Items;
 import utils.ScreenCleaning;
 
 public class MovieManagement {
     Scanner scanner = new Scanner(System.in);
-    public ArrayList<Movie> movies = new ArrayList<Movie>();
-    public ArrayList<Items> Items = new ArrayList<Items>();
+    public ArrayList<Movie> movies = new ArrayList<>();
+    public ArrayList<Items> items = new ArrayList<>();
 
     public void registerAsViewer() {
         ScreenCleaning.ClearScreen();
-        System.out.println("== Masuk Sebagai Penonton == ");
+        System.out.println("== Masuk Sebagai Penonton ==");
 
-        var isRunning = true;
+        boolean isRunning = true;
         while (isRunning) {
             System.out.println("----------------------------------------");
-            System.out.println("Berikut merupakan opsi yang tersedia");
-            System.out.println("(1). Daftar film");
-            System.out.println("(2). Daftar film yang sedang tayang");
-            System.out.println("(3). Tampilkan Makanan dan Minuman");
-            System.out.println("(4). Pesan Makanan dan Minuman");
-            System.out.println("(5). kembali ke menu awal");
+            System.out.println("Berikut merupakan opsi yang tersedia:");
+            System.out.println("(1) Daftar film");
+            System.out.println("(2) Daftar film yang sedang tayang");
+            System.out.println("(3) Tampilkan Makanan dan Minuman");
+            System.out.println("(4) Pesan Makanan dan Minuman");
+            System.out.println("(5) Kembali ke menu awal");
             System.out.println("----------------------------------------");
 
             System.out.print("- Input: ");
-            var inputOption = scanner.nextInt();
+            int inputOption = getIntInput();
 
             switch (inputOption) {
-                case 1:
-                    showAllMovies();
-                    break;
-                case 2:
-                    showPlayingMovies();
-                    break;
-                case 3:
-                    showAllItems();
-                    break;
-                case 4:
-                    orderItems();
-                    break;
-                case 5:
+                case 1 -> showAllMovies();
+                case 2 -> showPlayingMovies();
+                case 3 -> showAllItems();
+                case 4 -> orderItems();
+                case 5 -> {
                     ScreenCleaning.ClearScreen();
                     isRunning = false;
-                    break;
-                default:
-                    ScreenCleaning.ClearScreen();
-                    System.out.println("-------------------------------------");
-                    System.out.println("| Opsi tidak valid                  |");
-                    System.out.println("| Mohon masukkan opsi yang tersedia |");
-                    System.out.println("-------------------------------------");
-                    continue;
+                }
+                default -> Failures.showInvalidOptionMessage();
             }
         }
     }
 
-    public void showAllMovies() {
+    private void showAllMovies() {
         ScreenCleaning.ClearScreen();
 
-        if (this.movies.size() == 0) {
-            System.out.println("--------------------------------");
-            System.out.println("| Tidak ada film yang tersedia |");
-            System.out.println("---------------------------------");
+        if (movies.isEmpty()) {
+            Failures.showNoFilmAvailableMessage();
+            return;
         }
 
-        for (var movie : movies) {
+        for (Movie movie : movies) {
             System.out.println("---------------------------------------------");
-            System.out.println("- Title        : " + movie.getTitle());
-            System.out.println("- Director     : " + movie.getDirector());
-            System.out.println("- On air       : " + movie.getOnAir());
-            System.out.println("- Genres       : " + movie.getGenres());
-            System.out.println("- Rating       : " + movie.getRating());
+            System.out.println("- Title   : " + movie.getTitle());
+            System.out.println("- Director: " + movie.getDirector());
+            System.out.println("- On air  : " + movie.getOnAir());
+            System.out.println("- Genres  : " + movie.getGenres());
+            System.out.println("- Rating  : " + movie.getRating());
             System.out.println("---------------------------------------------");
         }
     }
 
-    public void showPlayingMovies() {
+    private void showPlayingMovies() {
         ScreenCleaning.ClearScreen();
 
-        if (this.movies.size() == 0) {
-            System.out.println("--------------------------------------");
-            System.out.println("| Tidak ada film yang sedang diputar |");
-            System.out.println("--------------------------------------");
+        if (movies.isEmpty()) {
+            Failures.showNoFilmPlayedMessage();
+            ;
+            return;
         }
 
-        for (var movie : movies) {
-            if (movie.getOnAir() == true) {
+        for (Movie movie : movies) {
+            if (movie.getOnAir()) {
                 System.out.println("---------------------------------------------");
-                System.out.println("- Title        : " + movie.getTitle());
-                System.out.println("- Director     : " + movie.getDirector());
-                System.out.println("- On air       : " + movie.getOnAir());
-                System.out.println("- Genres       : " + movie.getGenres());
-                System.out.println("- Rating       : " + movie.getRating());
+                System.out.println("- Title   : " + movie.getTitle());
+                System.out.println("- Director: " + movie.getDirector());
+                System.out.println("- Genres  : " + movie.getGenres());
+                System.out.println("- Rating  : " + movie.getRating());
                 System.out.println("---------------------------------------------");
             }
         }
     }
 
-    public void showAllItems() {
+    private void showAllItems() {
         ScreenCleaning.ClearScreen();
 
-        if (this.Items.size() == 0) {
-            System.out.println("--------------------------------");
-            System.out.println("| Tidak ada item yang tersedia |");
-            System.out.println("---------------------------------");
+        if (items.isEmpty()) {
+
+            return;
         }
-        ArrayList<Items> outOfStockItems = new ArrayList<Items>();
+
+        ArrayList<Items> outOfStockItems = new ArrayList<>();
 
         System.out.println("== Daftar Makanan ==");
         System.out.println("---------------------------------------------");
-        for (var item : Items) {
-            if (item instanceof models.Makanan) {
-                models.Makanan makanan = (models.Makanan) item;
-                if (makanan.getStok() > 0) {
-                    makanan.displayDetails();
-                    System.out.println("---------------------------------------------");
-                } else {
-                    outOfStockItems.add(makanan);
-                }
+        for (Items item : items) {
+            if (item instanceof models.Makanan makanan && makanan.getStok() > 0) {
+                makanan.displayDetails();
+            } else if (item instanceof models.Makanan makanan) {
+                outOfStockItems.add(makanan);
             }
         }
 
         System.out.println("== Daftar Minuman ==");
         System.out.println("---------------------------------------------");
-        for (var item : Items) {
-            if (item instanceof models.Minuman) {
-                models.Minuman minuman = (models.Minuman) item;
-                if (minuman.getStok() > 0) {
-                    minuman.displayDetails();
-                    minuman.getId();
-                    System.out.println("---------------------------------------------");
-                } else {
-                    outOfStockItems.add(minuman);
-                }
+        for (Items item : items) {
+            if (item instanceof models.Minuman minuman && minuman.getStok() > 0) {
+                minuman.displayDetails();
+            } else if (item instanceof models.Minuman minuman) {
+                outOfStockItems.add(minuman);
             }
         }
+
         if (!outOfStockItems.isEmpty()) {
             System.out.println("== Daftar Menu yang Habis ==");
             System.out.println("---------------------------------------------");
-            for (var item : outOfStockItems) {
-                System.out.println(item.getName() + " Habis");
+            for (Items item : outOfStockItems) {
+                System.out.println(item.getName() + " (Habis)");
             }
-            System.out.println("---------------------------------------------");
         }
     }
 
-    public void orderItems() {
+    private void orderItems() {
         showAllItems();
-        if (Items.isEmpty()) {
-            System.out.println("--------------------------------");
-            System.out.println("| Tidak ada item yang tersedia |");
-            System.out.println("---------------------------------");
+        if (items.isEmpty()) {
+            Failures.showItemNotFoundMessage();
             return;
         }
 
-        scanner.nextLine();
-        System.out.println("== Pemesanan Makanan dan Minuman ==");
-        System.out.println("---------------------------------------------");
-        System.out.println("Masukkan ID item yang ingin dipesan: ");
-        var itemID = scanner.nextInt();
-        Items selectedItem = null;
-        for (var item : Items) {
-            if (item.getId() == itemID) {
-                selectedItem = item;
-                break;
-            }
+        System.out.print("Masukkan ID item yang ingin dipesan: ");
+        int itemID = getIntInput();
+        if (itemID == -1) {
+            Failures.showItemInvalidInputMessage();
+            return;
         }
 
+        Items selectedItem = findItemById(itemID);
         if (selectedItem == null) {
-            System.out.println("--------------------------------");
-            System.out.println("| item tidak dapat di temukan |");
-            System.out.println("---------------------------------");
+            Failures.showItemNotFoundMessage();
             return;
         }
 
         System.out.print("Masukkan jumlah item yang ingin dipesan: ");
-        if (!scanner.hasNextInt()) {
-            System.out.println("Input jumlah tidak valid. Silakan coba lagi.");
-            scanner.next();
+        int quantity = getIntInput();
+        if (quantity <= 0) {
+            Failures.showItemInvalidInputMessage();
             return;
         }
-        int itemQuantity = scanner.nextInt();
 
-        if (selectedItem instanceof models.Makanan) {
-            models.Makanan makanan = (models.Makanan) selectedItem;
-            if (makanan.getStok() >= itemQuantity) {
-                makanan.setStok(makanan.getStok() - itemQuantity);
-                System.out.println("Pesanan berhasil. Sisa stok: " + makanan.getStok());
-            } else {
-                System.out.println("Pesanan gagal. Stok tidak mencukupi.");
-            }
-        } else if (selectedItem instanceof models.Minuman) {
-            models.Minuman minuman = (models.Minuman) selectedItem;
-            if (minuman.getStok() >= itemQuantity) {
-                minuman.setStok(minuman.getStok() - itemQuantity);
-                System.out.println("Pesanan berhasil. Sisa stok: " + minuman.getStok());
-            } else {
-                System.out.println("Pesanan gagal. Stok tidak mencukupi.");
-            }
+        if (!processOrder(selectedItem, quantity)) {
+            Failures.showItemOutOfStockMessage();
+        } else {
+            System.out.println("Pesanan berhasil! Sisa stok: " + getRemainingStock(selectedItem));
         }
     }
 
+    private boolean processOrder(Items item, int quantity) {
+        if (item instanceof models.Makanan makanan) {
+            if (makanan.getStok() >= quantity) {
+                makanan.setStok(makanan.getStok() - quantity);
+                return true;
+            }
+        } else if (item instanceof models.Minuman minuman) {
+            if (minuman.getStok() >= quantity) {
+                minuman.setStok(minuman.getStok() - quantity);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private int getRemainingStock(Items item) {
+        if (item instanceof models.Makanan makanan) {
+            return makanan.getStok();
+        } else if (item instanceof models.Minuman minuman) {
+            return minuman.getStok();
+        }
+        return 0;
+    }
+
+    private int getIntInput() {
+        if (!scanner.hasNextInt()) {
+            scanner.next(); // Clear invalid input
+            return -1;
+        }
+        return scanner.nextInt();
+    }
+
+    private Items findItemById(int itemID) {
+        for (Items item : items) {
+            if (item.getId() == itemID) {
+                return item;
+            }
+        }
+        return null;
+    }
 }
