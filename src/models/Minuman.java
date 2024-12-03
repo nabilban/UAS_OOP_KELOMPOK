@@ -9,8 +9,10 @@ public class Minuman extends Items {
     private int stok;
 
     public Minuman(String nama, double harga, int stok) {
-        super(nama, harga);
+        super(nama, harga, stok);
         this.nama = nama;
+        this.harga = harga;
+        this.stok = stok;
     }
 
     public String getNama() {
@@ -39,9 +41,9 @@ public class Minuman extends Items {
 
     @Override
     public void displayDetails() {
-        System.out.println("Nama Minuman: " + this.nama);
-        System.out.println("Harga Minuman: " + this.harga);
-        System.out.println("Stok Minuman: " + this.stok);
+        System.out.println("Nama Minuman:       :" + this.nama);
+        System.out.println("Harga Minuman:      :" + this.harga);
+        System.out.println("Stok Minuman:       :" + this.stok);
     }
 
 }

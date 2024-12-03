@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Scanner;
 
 import enums.Genres;
+import models.Makanan;
+import models.Minuman;
 import models.Movie;
 import services.MovieManagement;
 import utils.ScreenCleaning;
@@ -13,6 +15,7 @@ public class App {
         var scanner = new Scanner(System.in);
 
         var movieManagement = new MovieManagement();
+        // pre-defined Data
         movieManagement.movies.add(
                 new Movie(
                         "Star Wars: Episode III - Revenge of the Sith",
@@ -25,7 +28,6 @@ public class App {
                                 Genres.Fantasy,
                                 Genres.SciFi)),
                         8));
-
         movieManagement.movies.add(
                 new Movie(
                         "Frozen",
@@ -37,7 +39,22 @@ public class App {
                                 Genres.Adventure,
                                 Genres.Family)),
                         8));
+        movieManagement.Items.add(
+                new Makanan("PopCorn", 30000, 10));
+        movieManagement.Items.add(
+                new Makanan("Nachos", 25000, 15));
+        movieManagement.Items.add(
+                new Makanan("Hot Dog", 20000, 0));
+        movieManagement.Items.add(
+                new Minuman("Soda", 15000, 0));
+        movieManagement.Items.add(
+                new Minuman("Coffee", 20000, 25));
+        movieManagement.Items.add(
+                new Minuman("Tea", 15000, 20));
+        movieManagement.Items.add(
+                new Minuman("Juice", 25000, 0));
 
+        // Main Menu
         ScreenCleaning.ClearScreen();
         System.out.println("== Selamat Datang di Nova Cinema ==");
 
