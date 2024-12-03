@@ -1,9 +1,18 @@
 package abstracts;
 
 abstract public class Person {
+    private static int idCounter = 0;
+    private int id;
+    {
+        id = ++idCounter;
+    }
     protected String name;
     protected int age;
     protected String gender;
+
+    public int getId() {
+        return id;
+    }
 
     public Person(String name, int age, String gender) {
         this.name = name;

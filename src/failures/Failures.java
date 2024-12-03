@@ -3,6 +3,28 @@ package failures;
 import utils.ScreenCleaning;
 
 public class Failures {
+
+    public static void showFilmInvalidInputMessage() {
+        ScreenCleaning.ClearScreen();
+        System.out.println("--------------------------------");
+        System.out.println("| Input Tidak Valid          |");
+        System.out.println("--------------------------------");
+    }
+
+    public static void showFilmOutOfSeatkMessage() {
+        ScreenCleaning.ClearScreen();
+        System.out.println("--------------------------------");
+        System.out.println("| Kursi Penuh       |");
+        System.out.println("--------------------------------");
+    }
+
+    public static void showFilmNotAvailableMessage() {
+        ScreenCleaning.ClearScreen();
+        System.out.println("--------------------------------");
+        System.out.println("| Tidak ada film yang tersedia |");
+        System.out.println("--------------------------------");
+    }
+
     public static void showItemNotFoundMessage() {
         ScreenCleaning.ClearScreen();
         System.out.println("--------------------------------");
@@ -24,7 +46,7 @@ public class Failures {
         System.out.println("--------------------------------");
     }
 
-    static void showItemNotAvailableMessage() {
+    public static void showItemNotAvailableMessage() {
         ScreenCleaning.ClearScreen();
         System.out.println("--------------------------------");
         System.out.println("| Tidak ada item yang tersedia |");

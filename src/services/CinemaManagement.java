@@ -8,12 +8,12 @@ import models.*;
 import abstracts.Items;
 import utils.ScreenCleaning;
 
-public class MovieManagement {
+public class CinemaManagement {
     Scanner scanner = new Scanner(System.in);
     public ArrayList<Movie> movies = new ArrayList<>();
     public ArrayList<Items> items = new ArrayList<>();
 
-    public void registerAsViewer() {
+    public void registerAsViewer(Audiance audiance) {
         ScreenCleaning.ClearScreen();
         System.out.println("== Masuk Sebagai Penonton ==");
 
@@ -23,9 +23,10 @@ public class MovieManagement {
             System.out.println("Berikut merupakan opsi yang tersedia:");
             System.out.println("(1) Daftar film");
             System.out.println("(2) Daftar film yang sedang tayang");
-            System.out.println("(3) Tampilkan Makanan dan Minuman");
-            System.out.println("(4) Pesan Makanan dan Minuman");
-            System.out.println("(5) Kembali ke menu awal");
+            System.out.println("(3) Pesan Tiket");
+            System.out.println("(4) Tampilkan Makanan dan Minuman");
+            System.out.println("(5) Pesan Makanan dan Minuman");
+            System.out.println("(6) Kembali ke menu awal");
             System.out.println("----------------------------------------");
 
             System.out.print("- Input: ");
@@ -34,15 +35,66 @@ public class MovieManagement {
             switch (inputOption) {
                 case 1 -> showAllMovies();
                 case 2 -> showPlayingMovies();
-                case 3 -> showAllItems();
-                case 4 -> orderItems();
-                case 5 -> {
+                case 3 -> orderTickets(audiance);
+                case 4 -> showAllItems();
+                case 5 -> orderItems(audiance);
+                case 6 -> {
                     ScreenCleaning.ClearScreen();
                     isRunning = false;
                 }
                 default -> Failures.showInvalidOptionMessage();
             }
         }
+    }
+
+    private void orderTickets(Audiance audiance) {
+        showPlayingMovies();
+        if (movies.isEmpty()) {
+            Failures.showNoFilmPlayedMessage();
+            return;
+        }
+
+        System.out.print("Masukkan ID film yang ingin dipesan tiketnya: ");
+        int movieID = getIntInput();
+        Movie selectedMovie = findMovieById(movieID);
+
+        if (selectedMovie == null) {
+            Failures.showFilmInvalidInputMessage();
+            return;
+        }
+
+        if (!selectedMovie.getOnAir()) {
+            Failures.showFilmNotAvailableMessage();
+            return;
+        }
+
+        if (selectedMovie.getSeatsAvailable() == 0) {
+            Failures.showFilmOutOfSeatkMessage();
+            return;
+        }
+
+        System.out.print("Masukkan jumlah tiket yang ingin dipesan: ");
+        int ticketQuantity = getIntInput();
+        if (ticketQuantity <= 0 || ticketQuantity > selectedMovie.getSeatsAvailable()) {
+            Failures.showFilmInvalidInputMessage();
+            return;
+        }
+
+        for (int i = 0; i < ticketQuantity; i++) {
+            selectedMovie.addSeat(audiance);
+        }
+        // handle user ticket
+        if (audiance.getHaveTicket() == false) {
+            audiance.setHaveTicket(true);
+        }
+        // handle movie on air status
+        if (selectedMovie.getSeatsAvailable() == 0) {
+            selectedMovie.setOnAir(false);
+        }
+
+        ScreenCleaning.ClearScreen();
+        System.out.println("Tiket berhasil dipesan untuk film: " + selectedMovie.getTitle());
+        System.out.println("Jumlah tiket tersisa: " + selectedMovie.getSeatsAvailable());
     }
 
     private void showAllMovies() {
@@ -53,8 +105,9 @@ public class MovieManagement {
             return;
         }
 
+        System.out.println("---------------------------------------------");
         for (Movie movie : movies) {
-            System.out.println("---------------------------------------------");
+            System.out.println("- ID      : " + movie.getId());
             System.out.println("- Title   : " + movie.getTitle());
             System.out.println("- Director: " + movie.getDirector());
             System.out.println("- On air  : " + movie.getOnAir());
@@ -65,21 +118,34 @@ public class MovieManagement {
     }
 
     private void showPlayingMovies() {
-        ScreenCleaning.ClearScreen();
 
         if (movies.isEmpty()) {
-            Failures.showNoFilmPlayedMessage();
-            ;
+            for (Movie movie : movies) {
+                var onAirMovies = new ArrayList<>();
+                if (movie.getOnAir()) {
+                    onAirMovies.add(movie);
+                }
+                if (onAirMovies.isEmpty()) {
+                    Failures.showNoFilmPlayedMessage();
+                    return;
+                }
+            }
+            Failures.showNoFilmAvailableMessage();
             return;
         }
 
         for (Movie movie : movies) {
             if (movie.getOnAir()) {
+                ScreenCleaning.ClearScreen();
                 System.out.println("---------------------------------------------");
+                System.out.println("- ID      : " + movie.getId());
                 System.out.println("- Title   : " + movie.getTitle());
                 System.out.println("- Director: " + movie.getDirector());
                 System.out.println("- Genres  : " + movie.getGenres());
                 System.out.println("- Rating  : " + movie.getRating());
+                System.out.println(
+                        "- seats   : " + movie.getSeatsAvailable() + " available(Maksimum " + movie.getMaxSeats()
+                                + " seats)");
                 System.out.println("---------------------------------------------");
             }
         }
@@ -89,16 +155,16 @@ public class MovieManagement {
         ScreenCleaning.ClearScreen();
 
         if (items.isEmpty()) {
-
+            Failures.showItemNotAvailableMessage();
             return;
         }
 
         ArrayList<Items> outOfStockItems = new ArrayList<>();
-
-        System.out.println("== Daftar Makanan ==");
         System.out.println("---------------------------------------------");
+        System.out.println("== Daftar Makanan ==");
         for (Items item : items) {
             if (item instanceof models.Makanan makanan && makanan.getStok() > 0) {
+                System.out.println("---------------------------------------------");
                 makanan.displayDetails();
             } else if (item instanceof models.Makanan makanan) {
                 outOfStockItems.add(makanan);
@@ -106,9 +172,9 @@ public class MovieManagement {
         }
 
         System.out.println("== Daftar Minuman ==");
-        System.out.println("---------------------------------------------");
         for (Items item : items) {
             if (item instanceof models.Minuman minuman && minuman.getStok() > 0) {
+                System.out.println("---------------------------------------------");
                 minuman.displayDetails();
             } else if (item instanceof models.Minuman minuman) {
                 outOfStockItems.add(minuman);
@@ -116,6 +182,7 @@ public class MovieManagement {
         }
 
         if (!outOfStockItems.isEmpty()) {
+            System.out.println("---------------------------------------------");
             System.out.println("== Daftar Menu yang Habis ==");
             System.out.println("---------------------------------------------");
             for (Items item : outOfStockItems) {
@@ -124,10 +191,10 @@ public class MovieManagement {
         }
     }
 
-    private void orderItems() {
+    private void orderItems(Audiance audiance) {
         showAllItems();
         if (items.isEmpty()) {
-            Failures.showItemNotFoundMessage();
+            Failures.showItemNotAvailableMessage();
             return;
         }
 
@@ -154,7 +221,17 @@ public class MovieManagement {
         if (!processOrder(selectedItem, quantity)) {
             Failures.showItemOutOfStockMessage();
         } else {
+            if (audiance.getItems() == null) {
+                audiance.setItems(new ArrayList<>());
+            }
+
+            for (int i = 0; i < quantity; i++) {
+                audiance.getItems().add(selectedItem);
+            }
+
+            ScreenCleaning.ClearScreen();
             System.out.println("Pesanan berhasil! Sisa stok: " + getRemainingStock(selectedItem));
+            System.out.println("Jumlah item yang ditambahkan ke audiance: " + quantity);
         }
     }
 
@@ -184,7 +261,7 @@ public class MovieManagement {
 
     private int getIntInput() {
         if (!scanner.hasNextInt()) {
-            scanner.next(); // Clear invalid input
+            scanner.next();
             return -1;
         }
         return scanner.nextInt();
@@ -194,6 +271,15 @@ public class MovieManagement {
         for (Items item : items) {
             if (item.getId() == itemID) {
                 return item;
+            }
+        }
+        return null;
+    }
+
+    private Movie findMovieById(int movieID) {
+        for (Movie movie : movies) {
+            if (movie.getId() == movieID) {
+                return movie;
             }
         }
         return null;
