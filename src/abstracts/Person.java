@@ -1,6 +1,6 @@
-package models;
+package abstracts;
 
-public class Person {
+abstract public class Person {
     protected String name;
     protected int age;
     protected String gender;

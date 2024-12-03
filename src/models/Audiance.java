@@ -1,14 +1,15 @@
 package models;
 
+import abstracts.*;
+
 public class Audiance extends Person {
     private boolean haveTicket = false;
 
     public Audiance(
-        String name,
-        int age,
-        String gender,
-        boolean haveTicket
-    ) {
+            String name,
+            int age,
+            String gender,
+            boolean haveTicket) {
         super(name, age, gender);
         this.haveTicket = haveTicket;
     }

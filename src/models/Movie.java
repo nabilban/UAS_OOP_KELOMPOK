@@ -1,5 +1,7 @@
 package models;
 
+import enums.*;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -8,17 +10,16 @@ public class Movie {
     private String director;
     private LocalDate releaseDate;
     private boolean onAir;
-    private ArrayList<String> genres;
     private int rating;
+    private ArrayList<Genres> genres;
 
     public Movie(
-        String name, 
-        String director, 
-        LocalDate releaseDate,
-        boolean onAir,
-        ArrayList<String> genres,
-        int rating
-    ) {
+            String name,
+            String director,
+            LocalDate releaseDate,
+            boolean onAir,
+            ArrayList<Genres> genres,
+            int rating) {
         this.title = name;
         this.director = director;
         this.releaseDate = releaseDate;
@@ -67,11 +68,12 @@ public class Movie {
         return this.rating;
     }
 
-    public void setGenres(ArrayList<String> newGenres) {
+    public void setGenres(ArrayList<Genres> newGenres) {
         this.genres = newGenres;
     }
 
-    public ArrayList<String> getGenres() {
+    public ArrayList<Genres> getGenres() {
         return this.genres;
     }
+
 }

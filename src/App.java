@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import enums.Genres;
 import models.Movie;
 import services.MovieManagement;
 import utils.ScreenCleaning;
@@ -13,37 +14,29 @@ public class App {
 
         var movieManagement = new MovieManagement();
         movieManagement.movies.add(
-            new Movie(
-                "Star Wars: Episode III - Revenge of the Sith", 
-                "George Lucas", 
-                LocalDate.of(2005, 05, 12), 
-                true, 
-                new ArrayList<String>(List.of(
-                    "Action", 
-                    "Advanture", 
-                    "Fantasy", 
-                    "Sci-Fi"
-                )), 
-                8
-            )
-        );
+                new Movie(
+                        "Star Wars: Episode III - Revenge of the Sith",
+                        "George Lucas",
+                        LocalDate.of(2005, 05, 12),
+                        true,
+                        new ArrayList<Genres>(List.of(
+                                Genres.Action,
+                                Genres.Adventure,
+                                Genres.Fantasy,
+                                Genres.SciFi)),
+                        8));
 
         movieManagement.movies.add(
-            new Movie(
-                "Frozen", 
-                "Chris Buck, Jennifer Lee", 
-                LocalDate.of(2013, 11, 29), 
-                false, 
-                new ArrayList<String>(List.of(
-                    "Animation", 
-                    "Advanture", 
-                    "Fantasy", 
-                    "Family",
-                    "Comedy"
-                )), 
-                8
-            )
-        );
+                new Movie(
+                        "Frozen",
+                        "Chris Buck, Jennifer Lee",
+                        LocalDate.of(2013, 11, 29),
+                        false,
+                        new ArrayList<Genres>(List.of(
+                                Genres.Animation,
+                                Genres.Adventure,
+                                Genres.Family)),
+                        8));
 
         ScreenCleaning.ClearScreen();
         System.out.println("== Selamat Datang di Nova Cinema ==");
