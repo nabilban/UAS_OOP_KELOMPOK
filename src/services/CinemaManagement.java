@@ -140,14 +140,13 @@ public class CinemaManagement {
             return;
         }
 
-        
+        ScreenCleaning.ClearScreen();
+        System.out.println("----------------------------------------");
+        System.out.println("| == Daftar Film yang Sedang Tayang == |");
+        System.out.println("----------------------------------------");
+
         for (Movie movie : movies) {
             if (movie.getOnAir()) {
-                ScreenCleaning.ClearScreen();
-                System.out.println("----------------------------------------");
-                System.out.println("| == Daftar Film yang Sedang Tayang == |");
-                System.out.println("----------------------------------------");
-
                 System.out.println("---------------------------------------------");
                 System.out.println("- ID      : " + movie.getId());
                 System.out.println("- Title   : " + movie.getTitle());

@@ -24,10 +24,38 @@ public class Initialize {
         cinemaManagement.items.add(new Minuman("Juice", 25000, 0));
         cinemaManagement.movies.add(
                 new Movie(
+                        "Star Wars: Episode I - The Phantom Menace",
+                        "George Lucas",
+                        LocalDate.of(1999, 5, 19),
+                        true,
+                        new ArrayList<>(List.of(
+                                Genres.Action,
+                                Genres.Adventure,
+                                Genres.Fantasy,
+                                Genres.SciFi)),
+                        6,
+                        new ArrayList<>(getPredefinedAudience())));
+
+        cinemaManagement.movies.add(
+                new Movie(
+                        "Star Wars: Episode II - Attack of the Clones",
+                        "George Lucas",
+                        LocalDate.of(2002, 5, 16),
+                        true,
+                        new ArrayList<>(List.of(
+                                Genres.Action,
+                                Genres.Adventure,
+                                Genres.Fantasy,
+                                Genres.SciFi)),
+                        6,
+                        new ArrayList<>(getPredefinedAudience())));
+
+        cinemaManagement.movies.add(
+                new Movie(
                         "Star Wars: Episode III - Revenge of the Sith",
                         "George Lucas",
                         LocalDate.of(2005, 5, 12),
-                        true,
+                        false,
                         new ArrayList<>(List.of(
                                 Genres.Action,
                                 Genres.Adventure,
@@ -35,11 +63,51 @@ public class Initialize {
                                 Genres.SciFi)),
                         8,
                         new ArrayList<>(getPredefinedAudience())));
+
         cinemaManagement.movies.add(
                 new Movie(
                         "Frozen",
                         "Chris Buck, Jennifer Lee",
                         LocalDate.of(2013, 11, 29),
+                        true,
+                        new ArrayList<>(List.of(
+                                Genres.Animation,
+                                Genres.Adventure,
+                                Genres.Family)),
+                        8,
+                        new ArrayList<>(getPredefinedAudience())));
+
+        cinemaManagement.movies.add(
+                new Movie(
+                        "Frozen II",
+                        "Chris Buck, Jennifer Lee",
+                        LocalDate.of(2019, 11, 20),
+                        true,
+                        new ArrayList<>(List.of(
+                                Genres.Animation,
+                                Genres.Adventure,
+                                Genres.Family)),
+                        8,
+                        new ArrayList<>(getPredefinedAudience())));
+
+        cinemaManagement.movies.add(
+                new Movie(
+                        "Pirates of Silicon Valley",
+                        "Martyn Burke",
+                        LocalDate.of(1999, 06, 20),
+                        false,
+                        new ArrayList<>(List.of(
+                                Genres.Animation,
+                                Genres.Adventure,
+                                Genres.Family)),
+                        7,
+                        new ArrayList<>(getPredefinedAudience())));
+
+        cinemaManagement.movies.add(
+                new Movie(
+                        "The Imitationn Game",
+                        "Morten Tyldum",
+                        LocalDate.of(2015, 01, 22),
                         false,
                         new ArrayList<>(List.of(
                                 Genres.Animation,
