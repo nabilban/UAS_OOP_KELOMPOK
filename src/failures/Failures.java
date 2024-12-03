@@ -6,16 +6,16 @@ public class Failures {
 
     public static void showFilmInvalidInputMessage() {
         ScreenCleaning.ClearScreen();
-        System.out.println("--------------------------------");
-        System.out.println("| Input Tidak Valid          |");
-        System.out.println("--------------------------------");
+        System.out.println("---------------------");
+        System.out.println("| Input Tidak Valid |");
+        System.out.println("---------------------");
     }
 
     public static void showFilmOutOfSeatkMessage() {
         ScreenCleaning.ClearScreen();
-        System.out.println("--------------------------------");
-        System.out.println("| Kursi Penuh       |");
-        System.out.println("--------------------------------");
+        System.out.println("---------------");
+        System.out.println("| Kursi Penuh |");
+        System.out.println("---------------");
     }
 
     public static void showFilmNotAvailableMessage() {
@@ -34,16 +34,16 @@ public class Failures {
 
     public static void showItemInvalidInputMessage() {
         ScreenCleaning.ClearScreen();
-        System.out.println("--------------------------------");
-        System.out.println("| Input Tidak Valid          |");
-        System.out.println("--------------------------------");
+        System.out.println("----------------------");
+        System.out.println("| Input Tidak Valid  |");
+        System.out.println("----------------------");
     }
 
     public static void showItemOutOfStockMessage() {
         ScreenCleaning.ClearScreen();
-        System.out.println("--------------------------------");
-        System.out.println("| Stok Tidak Mencukupi       |");
-        System.out.println("--------------------------------");
+        System.out.println("------------------------");
+        System.out.println("| Stok Tidak Mencukupi |");
+        System.out.println("------------------------");
     }
 
     public static void showItemNotAvailableMessage() {
