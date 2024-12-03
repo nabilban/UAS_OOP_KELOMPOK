@@ -9,7 +9,7 @@ public class Minuman extends Items {
     private int stok;
 
     public Minuman(String nama, double harga, int stok) {
-        super(nama, harga, stok);
+        super(nama, harga);
         this.nama = nama;
         this.harga = harga;
         this.stok = stok;
@@ -41,6 +41,7 @@ public class Minuman extends Items {
 
     @Override
     public void displayDetails() {
+        System.out.println("ID                  :" + this.getId());
         System.out.println("Nama Minuman:       :" + this.nama);
         System.out.println("Harga Minuman:      :" + this.harga);
         System.out.println("Stok Minuman:       :" + this.stok);

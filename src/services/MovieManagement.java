@@ -23,7 +23,8 @@ public class MovieManagement {
             System.out.println("(1). Daftar film");
             System.out.println("(2). Daftar film yang sedang tayang");
             System.out.println("(3). Tampilkan Makanan dan Minuman");
-            System.out.println("(4). kembali ke menu awal");
+            System.out.println("(4). Pesan Makanan dan Minuman");
+            System.out.println("(5). kembali ke menu awal");
             System.out.println("----------------------------------------");
 
             System.out.print("- Input: ");
@@ -40,6 +41,9 @@ public class MovieManagement {
                     showAllItems();
                     break;
                 case 4:
+                    orderItems();
+                    break;
+                case 5:
                     ScreenCleaning.ClearScreen();
                     isRunning = false;
                     break;
@@ -127,6 +131,7 @@ public class MovieManagement {
                 models.Minuman minuman = (models.Minuman) item;
                 if (minuman.getStok() > 0) {
                     minuman.displayDetails();
+                    minuman.getId();
                     System.out.println("---------------------------------------------");
                 } else {
                     outOfStockItems.add(minuman);
@@ -142,4 +147,61 @@ public class MovieManagement {
             System.out.println("---------------------------------------------");
         }
     }
+
+    public void orderItems() {
+        showAllItems();
+        if (Items.isEmpty()) {
+            System.out.println("--------------------------------");
+            System.out.println("| Tidak ada item yang tersedia |");
+            System.out.println("---------------------------------");
+            return;
+        }
+
+        scanner.nextLine();
+        System.out.println("== Pemesanan Makanan dan Minuman ==");
+        System.out.println("---------------------------------------------");
+        System.out.println("Masukkan ID item yang ingin dipesan: ");
+        var itemID = scanner.nextInt();
+        Items selectedItem = null;
+        for (var item : Items) {
+            if (item.getId() == itemID) {
+                selectedItem = item;
+                break;
+            }
+        }
+
+        if (selectedItem == null) {
+            System.out.println("--------------------------------");
+            System.out.println("| item tidak dapat di temukan |");
+            System.out.println("---------------------------------");
+            return;
+        }
+
+        System.out.print("Masukkan jumlah item yang ingin dipesan: ");
+        if (!scanner.hasNextInt()) {
+            System.out.println("Input jumlah tidak valid. Silakan coba lagi.");
+            scanner.next();
+            return;
+        }
+        int itemQuantity = scanner.nextInt();
+
+        if (selectedItem instanceof models.Makanan) {
+            models.Makanan makanan = (models.Makanan) selectedItem;
+            if (makanan.getStok() >= itemQuantity) {
+                makanan.setStok(makanan.getStok() - itemQuantity);
+                System.out.println("Pesanan berhasil. Sisa stok: " + makanan.getStok());
+            } else {
+                System.out.println("Pesanan gagal. Stok tidak mencukupi.");
+            }
+        } else if (selectedItem instanceof models.Minuman) {
+            models.Minuman minuman = (models.Minuman) selectedItem;
+            if (minuman.getStok() >= itemQuantity) {
+                minuman.setStok(minuman.getStok() - itemQuantity);
+                System.out.println("Pesanan berhasil. Sisa stok: " + minuman.getStok());
+            } else {
+                System.out.println("Pesanan gagal. Stok tidak mencukupi.");
+            }
+        }
+    }
+
 }

@@ -3,13 +3,12 @@ package models;
 import abstracts.Items;
 
 public class Makanan extends Items {
-
     private String nama;
     private double harga;
     private int stok;
 
     public Makanan(String nama, double harga, int stok) {
-        super(nama, harga, stok);
+        super(nama, harga);
         this.nama = nama;
         this.harga = harga;
         this.stok = stok;
@@ -41,6 +40,7 @@ public class Makanan extends Items {
 
     @Override
     public void displayDetails() {
+        System.out.println("ID                  :" + this.getId());
         System.out.println("Nama Makanan:       :" + this.nama);
         System.out.println("Harga Makanan:      :" + this.harga);
         System.out.println("Stok Makanan:       :" + this.stok);
