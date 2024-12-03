@@ -15,7 +15,9 @@ public class CinemaManagement {
 
     public void registerAsViewer(Audiance audiance) {
         ScreenCleaning.ClearScreen();
-        System.out.println("== Masuk Sebagai Penonton ==");
+        System.out.println("--------------------------------");
+        System.out.println("| == Masuk sebagai Penonton == |");
+        System.out.println("--------------------------------");
 
         boolean isRunning = true;
         while (isRunning) {
@@ -99,6 +101,9 @@ public class CinemaManagement {
 
     private void showAllMovies() {
         ScreenCleaning.ClearScreen();
+        System.out.println("---------------------");
+        System.out.println("| == Daftar Film == |");
+        System.out.println("---------------------");
 
         if (movies.isEmpty()) {
             Failures.showNoFilmAvailableMessage();
@@ -118,6 +123,7 @@ public class CinemaManagement {
     }
 
     private void showPlayingMovies() {
+        ScreenCleaning.ClearScreen();
 
         if (movies.isEmpty()) {
             for (Movie movie : movies) {
@@ -134,9 +140,14 @@ public class CinemaManagement {
             return;
         }
 
+        
         for (Movie movie : movies) {
             if (movie.getOnAir()) {
                 ScreenCleaning.ClearScreen();
+                System.out.println("----------------------------------------");
+                System.out.println("| == Daftar Film yang Sedang Tayang == |");
+                System.out.println("----------------------------------------");
+
                 System.out.println("---------------------------------------------");
                 System.out.println("- ID      : " + movie.getId());
                 System.out.println("- Title   : " + movie.getTitle());
@@ -160,8 +171,9 @@ public class CinemaManagement {
         }
 
         ArrayList<Items> outOfStockItems = new ArrayList<>();
-        System.out.println("---------------------------------------------");
-        System.out.println("== Daftar Makanan ==");
+        System.out.println("------------------------");
+        System.out.println("| == Daftar Makanan == |");
+        System.out.println("------------------------");
         for (Items item : items) {
             if (item instanceof models.Makanan makanan && makanan.getStok() > 0) {
                 System.out.println("---------------------------------------------");
@@ -171,7 +183,9 @@ public class CinemaManagement {
             }
         }
 
-        System.out.println("== Daftar Minuman ==");
+        System.out.println("------------------------");
+        System.out.println("| == Daftar Minuman == |");
+        System.out.println("------------------------");
         for (Items item : items) {
             if (item instanceof models.Minuman minuman && minuman.getStok() > 0) {
                 System.out.println("---------------------------------------------");
@@ -182,11 +196,11 @@ public class CinemaManagement {
         }
 
         if (!outOfStockItems.isEmpty()) {
-            System.out.println("---------------------------------------------");
-            System.out.println("== Daftar Menu yang Habis ==");
-            System.out.println("---------------------------------------------");
+            System.out.println("--------------------------------");
+            System.out.println("| == Daftar Menu yang Habis == |");
+            System.out.println("--------------------------------");
             for (Items item : outOfStockItems) {
-                System.out.println(item.getName() + " (Habis)");
+                System.out.println("- " +item.getName() + " (Habis)");
             }
         }
     }
@@ -198,7 +212,7 @@ public class CinemaManagement {
             return;
         }
 
-        System.out.print("Masukkan ID item yang ingin dipesan: ");
+        System.out.print("- Masukkan ID item yang ingin dipesan: ");
         int itemID = getIntInput();
         if (itemID == -1) {
             Failures.showItemInvalidInputMessage();
@@ -211,7 +225,7 @@ public class CinemaManagement {
             return;
         }
 
-        System.out.print("Masukkan jumlah item yang ingin dipesan: ");
+        System.out.print("- Masukkan jumlah item yang ingin dipesan: ");
         int quantity = getIntInput();
         if (quantity <= 0) {
             Failures.showItemInvalidInputMessage();

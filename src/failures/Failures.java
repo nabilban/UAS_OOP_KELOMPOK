@@ -74,5 +74,4 @@ public class Failures {
         System.out.println("| Tidak ada film yang tersedia |");
         System.out.println("--------------------------------");
     }
-
 }

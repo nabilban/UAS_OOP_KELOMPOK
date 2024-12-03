@@ -40,10 +40,10 @@ public class Makanan extends Items {
 
     @Override
     public void displayDetails() {
-        System.out.println("ID                  :" + this.getId());
-        System.out.println("Nama Makanan:       :" + this.nama);
-        System.out.println("Harga Makanan:      :" + this.harga);
-        System.out.println("Stok Makanan:       :" + this.stok);
+        System.out.println("- ID                  :" + this.getId());
+        System.out.println("- Nama Makanan:       :" + this.nama);
+        System.out.println("- Harga Makanan:      :" + this.harga);
+        System.out.println("- Stok Makanan:       :" + this.stok);
     }
 
 }

@@ -14,7 +14,9 @@ public class App {
 
         // Main Menu
         ScreenCleaning.ClearScreen();
-        System.out.println("== Selamat Datang di Nova Cinema ==");
+        System.out.println("---------------------------------------");
+        System.out.println("| == Selamat Datang di Nova Cinema == |");
+        System.out.println("---------------------------------------");
 
         var isRunning = true;
         while (isRunning) {
@@ -31,14 +33,21 @@ public class App {
             switch (inputOption) {
                 case 1:
                     ScreenCleaning.ClearScreen();
-                    System.out.println("== Masuk Sebagai Penonton ==");
+                    System.out.println("--------------------------------");
+                    System.out.println("| == Masuk sebagai Penonton == |");
+                    System.out.println("--------------------------------");
+
                     System.out.println("----------------------------------------");
+
                     System.out.print("Masukkan nama Anda: ");
                     var name = scanner.next();
+
                     System.out.print("Masukkan usia Anda: ");
                     var age = scanner.nextInt();
-                    System.out.println("gender Anda: ");
+
+                    System.out.print("Masukkan gender Anda: ");
                     var gender = scanner.next();
+
                     var audience = new models.Audiance(name, age, gender, false, null);
                     movieManagement.registerAsViewer(audience);
                     break;
