@@ -1,9 +1,9 @@
 import java.util.Scanner;
 
 import models.Staff;
+import utils.Initialize;
 import utils.ScreenCleaning;
 import views.Failures;
-import views.Initialize;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -44,16 +44,20 @@ public class App {
 
                     System.out.print("Masukkan usia Anda: ");
                     var audiancesAge = scanner.nextInt();
+                    if (audiancesAge < 0 || scanner.hasNextInt() == false) {
+                        Failures.showInvalidInputMessage();
+                        continue;
+                    }
 
                     System.out.print("Masukkan gender Anda: ");
                     var audiancesGender = scanner.next();
 
                     var audience = new models.Audiance(
-                        audiancesName, 
-                        audiancesAge, 
-                        audiancesGender, 
-                        false, 
-                    null);
+                            audiancesName,
+                            audiancesAge,
+                            audiancesGender,
+                            false,
+                            null);
                     movieManagement.registerAsViewer(audience);
                     break;
                 case 2:

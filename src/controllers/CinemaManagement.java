@@ -50,7 +50,7 @@ public class CinemaManagement {
                 case 2 -> MovieView.displayPlayingMovies(movies);
                 case 3 -> addMovies();
                 case 4 -> ItemsView.displayItemsList(items);
-                case 5 -> System.out.println("Tambah Stock Makanan dan Minuman");
+                case 5 -> addItems();
                 case 6 -> {
                     ScreenCleaning.ClearScreen();
                     isRunning = false;
@@ -72,7 +72,7 @@ public class CinemaManagement {
         Movie selectedMovie = findMovieById(movieID);
 
         if (selectedMovie == null) {
-            Failures.showFilmInvalidInputMessage();
+            Failures.showInvalidInputMessage();
             return;
         }
 
@@ -89,18 +89,18 @@ public class CinemaManagement {
         System.out.print("Masukkan jumlah tiket yang ingin dipesan: ");
         int ticketQuantity = getIntInput();
         if (ticketQuantity <= 0 || ticketQuantity > selectedMovie.getSeatsAvailable()) {
-            Failures.showFilmInvalidInputMessage();
+            Failures.showInvalidInputMessage();
             return;
         }
 
         for (int i = 0; i < ticketQuantity; i++) {
             selectedMovie.addSeat(audiance);
         }
-        // handle user ticket
+
         if (audiance.getHaveTicket() == false) {
             audiance.setHaveTicket(true);
         }
-        // handle movie on air status
+
         if (selectedMovie.getSeatsAvailable() == 0) {
             selectedMovie.setOnAir(false);
         }
@@ -120,7 +120,7 @@ public class CinemaManagement {
         System.out.print("- Masukkan ID item yang ingin dipesan: ");
         int itemID = getIntInput();
         if (itemID == -1) {
-            Failures.showItemInvalidInputMessage();
+            Failures.showInvalidInputMessage();
             return;
         }
 
@@ -133,7 +133,7 @@ public class CinemaManagement {
         System.out.print("- Masukkan jumlah item yang ingin dipesan: ");
         int quantity = getIntInput();
         if (quantity <= 0) {
-            Failures.showItemInvalidInputMessage();
+            Failures.showInvalidInputMessage();
             return;
         }
 
@@ -220,20 +220,40 @@ public class CinemaManagement {
 
         System.out.print("Apakah film akan ditayangkan (cth: true / false): ");
         var moviesIsOnAir = scanner.nextBoolean();
+        if (!scanner.hasNextBoolean()) {
+            Failures.showInvalidOptionMessage();
+            return;
+        }
 
-        System.out.print("Masukkan rating film: ");
+        System.out.print("Masukkan rating film 1 - 10 (cth: 8): ");
         var moviesRating = scanner.nextInt();
+        if (moviesRating < 0 || moviesRating > 10 || scanner.hasNextInt() == false) {
+            Failures.showInvalidOptionMessage();
+            return;
+        }
 
         var moviesGenres = addGenres();
 
         System.out.print("Masukkan tahun film dibuat: ");
         var moviesYear = scanner.nextInt();
+        if (moviesYear <= 0 || scanner.hasNextInt() == false) {
+            Failures.showInvalidOptionMessage();
+            return;
+        }
 
-        System.out.print("Masukkan bulan film dibuat: ");
+        System.out.print("Masukkan nomor bulan film dibuat (cth: 12): ");
         var moviesMonth = scanner.nextInt();
+        if (moviesMonth <= 0 || moviesMonth > 12 || scanner.hasNextInt() == false) {
+            Failures.showInvalidOptionMessage();
+            return;
+        }
 
-        System.out.print("Masukkan hari film dibuat (dalam angka): ");
+        System.out.print("Masukkan hari film dibuat (dalam angka 0 - 31): ");
         var moviesDate = scanner.nextInt();
+        if (moviesDate <= 0 || moviesDate > 31 || scanner.hasNextInt() == false) {
+            Failures.showInvalidOptionMessage();
+            return;
+        }
 
         var movie = new Movie(
                 moviesTitle,
@@ -260,5 +280,43 @@ public class CinemaManagement {
             }
         }
         return genres;
+    }
+
+    private void addItems() {
+        ScreenCleaning.ClearScreen();
+        System.out.println("----------------------------");
+        System.out.println("| == Tambah Daftar Item == |");
+        System.out.println("----------------------------");
+
+        System.out.println("----------------------------------------");
+
+        System.out.print("Masukkan jenis item (makanan / minuman): ");
+        var itemType = scanner.next();
+        if (!itemType.equalsIgnoreCase("makanan") && !itemType.equalsIgnoreCase("minuman")) {
+            Failures.showInvalidInputMessage();
+            return;
+        }
+
+        System.out.print("Masukkan nama item: ");
+        var itemName = scanner.next();
+
+        System.out.print("Masukkan harga item (cth: 30000): ");
+        var itemPrice = scanner.nextInt();
+        if (itemPrice <= 0 || scanner.hasNextInt() == false) {
+            Failures.showInvalidInputMessage();
+            return;
+        }
+
+        System.out.print("Masukkan stok item (cth: 30): ");
+        var itemStock = scanner.nextInt();
+        if (itemStock < 0 || scanner.hasNextInt() == false) {
+            Failures.showInvalidInputMessage();
+            return;
+        }
+
+        var item = itemType.equalsIgnoreCase("makanan")
+                ? new Makanan(itemName, itemPrice, itemStock)
+                : new Minuman(itemName, itemPrice, itemStock);
+        this.items.add(item);
     }
 }

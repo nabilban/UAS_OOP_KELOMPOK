@@ -4,7 +4,7 @@ import utils.ScreenCleaning;
 
 public class Failures {
 
-    public static void showFilmInvalidInputMessage() {
+    public static void showInvalidInputMessage() {
         ScreenCleaning.ClearScreen();
         System.out.println("---------------------");
         System.out.println("| Input Tidak Valid |");
@@ -30,13 +30,6 @@ public class Failures {
         System.out.println("--------------------------------");
         System.out.println("| Item Tidak Dapet Ditemukan |");
         System.out.println("--------------------------------");
-    }
-
-    public static void showItemInvalidInputMessage() {
-        ScreenCleaning.ClearScreen();
-        System.out.println("----------------------");
-        System.out.println("| Input Tidak Valid  |");
-        System.out.println("----------------------");
     }
 
     public static void showItemOutOfStockMessage() {
