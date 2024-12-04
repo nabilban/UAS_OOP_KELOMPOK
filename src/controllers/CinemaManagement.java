@@ -236,7 +236,7 @@ public class CinemaManagement {
             System.out.println("| == Daftar Menu yang Habis == |");
             System.out.println("--------------------------------");
             for (Items item : outOfStockItems) {
-                System.out.println("- " +item.getName() + " (Habis)");
+                System.out.println("- " + item.getName() + " (Habis)");
             }
         }
     }
@@ -349,11 +349,13 @@ public class CinemaManagement {
         System.out.print("Masukkan nama director: ");
         var moviesDirector = scanner.next();
 
-        System.out.print("Apakah film akan ditayangkan: ");
+        System.out.print("Apakah film akan ditayangkan (cth: true / false): ");
         var moviesIsOnAir = scanner.nextBoolean();
 
         System.out.print("Masukkan rating film: ");
         var moviesRating = scanner.nextInt();
+
+        var moviesGenres = addGenres();
 
         System.out.print("Masukkan tahun film dibuat: ");
         var moviesYear = scanner.nextInt();
@@ -365,14 +367,29 @@ public class CinemaManagement {
         var moviesDate = scanner.nextInt();
 
         var movie = new Movie(
-            moviesTitle, 
-            moviesDirector, 
-            LocalDate.of(moviesYear, moviesMonth, moviesDate), 
-            moviesIsOnAir, 
-            null, 
-            moviesRating, 
-            Initialize.getPredefinedAudience()
-        );
+                moviesTitle,
+                moviesDirector,
+                LocalDate.of(moviesYear, moviesMonth, moviesDate),
+                moviesIsOnAir,
+                moviesGenres,
+                moviesRating,
+                Initialize.getPredefinedAudience());
         this.movies.add(movie);
+    }
+
+    private ArrayList<String> addGenres() {
+        var genres = new ArrayList<String>();
+        boolean isRunning = true;
+        System.out.println("Masukkan genre film (ketik 'selesai' untuk selesai): ");
+        while (isRunning) {
+            System.out.print("Masukkan genre: ");
+            var input = scanner.next();
+            if (!input.equalsIgnoreCase("selesai")) {
+                genres.add(input);
+            } else {
+                isRunning = false;
+            }
+        }
+        return genres;
     }
 }
