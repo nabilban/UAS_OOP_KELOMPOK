@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import controllers.CinemaManagement;
-import enums.Genres;
 import models.Audiance;
 import models.Makanan;
 import models.Minuman;
@@ -28,11 +27,12 @@ public class Initialize {
                         "George Lucas",
                         LocalDate.of(1999, 5, 19),
                         true,
-                        new ArrayList<>(List.of(
-                                Genres.Action,
-                                Genres.Adventure,
-                                Genres.Fantasy,
-                                Genres.SciFi)),
+                        new ArrayList<String>(List.of(
+                                "Action", 
+                                "Advanture",
+                                "Fantasy",
+                                "Sci-Fi"
+                        )),
                         6,
                         new ArrayList<>(getPredefinedAudience())));
 
@@ -43,10 +43,11 @@ public class Initialize {
                         LocalDate.of(2002, 5, 16),
                         true,
                         new ArrayList<>(List.of(
-                                Genres.Action,
-                                Genres.Adventure,
-                                Genres.Fantasy,
-                                Genres.SciFi)),
+                                "Action", 
+                                "Advanture",
+                                "Fantasy",
+                                "Sci-Fi"
+                        )),
                         6,
                         new ArrayList<>(getPredefinedAudience())));
 
@@ -57,10 +58,11 @@ public class Initialize {
                         LocalDate.of(2005, 5, 12),
                         false,
                         new ArrayList<>(List.of(
-                                Genres.Action,
-                                Genres.Adventure,
-                                Genres.Fantasy,
-                                Genres.SciFi)),
+                                "Action", 
+                                "Advanture",
+                                "Fantasy",
+                                "Sci-Fi"
+                        )),
                         8,
                         new ArrayList<>(getPredefinedAudience())));
 
@@ -71,9 +73,10 @@ public class Initialize {
                         LocalDate.of(2013, 11, 29),
                         true,
                         new ArrayList<>(List.of(
-                                Genres.Animation,
-                                Genres.Adventure,
-                                Genres.Family)),
+                                "Animation",
+                                "Advanture",
+                                "Family"
+                        )),
                         8,
                         new ArrayList<>(getPredefinedAudience())));
 
@@ -84,9 +87,10 @@ public class Initialize {
                         LocalDate.of(2019, 11, 20),
                         true,
                         new ArrayList<>(List.of(
-                                Genres.Animation,
-                                Genres.Adventure,
-                                Genres.Family)),
+                                "Animation",
+                                "Advanture",
+                                "Family"
+                        )),
                         8,
                         new ArrayList<>(getPredefinedAudience())));
 
@@ -97,9 +101,10 @@ public class Initialize {
                         LocalDate.of(1999, 06, 20),
                         false,
                         new ArrayList<>(List.of(
-                                Genres.Animation,
-                                Genres.Adventure,
-                                Genres.Family)),
+                                "Animation",
+                                "Advanture",
+                                "Family"
+                        )),
                         7,
                         new ArrayList<>(getPredefinedAudience())));
 
@@ -110,9 +115,10 @@ public class Initialize {
                         LocalDate.of(2015, 01, 22),
                         false,
                         new ArrayList<>(List.of(
-                                Genres.Animation,
-                                Genres.Adventure,
-                                Genres.Family)),
+                                "Animation",
+                                "Advanture",
+                                "Family"
+                        )),
                         8,
                         new ArrayList<>(getPredefinedAudience())));
 

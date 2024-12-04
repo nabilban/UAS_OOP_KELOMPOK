@@ -1,7 +1,5 @@
 package models;
 
-import enums.*;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -16,7 +14,7 @@ public class Movie {
     private LocalDate releaseDate;
     private boolean onAir;
     private int rating;
-    private ArrayList<Genres> genres;
+    private ArrayList<String> genres;
     private ArrayList<Audiance> seats;
     private final int MAX_SEATS = 30;
 
@@ -25,7 +23,7 @@ public class Movie {
             String director,
             LocalDate releaseDate,
             boolean onAir,
-            ArrayList<Genres> genres,
+            ArrayList<String> genres,
             int rating,
             ArrayList<Audiance> seats) {
         this.title = name;
@@ -81,11 +79,11 @@ public class Movie {
         return this.rating;
     }
 
-    public void setGenres(ArrayList<Genres> newGenres) {
+    public void setGenres(ArrayList<String> newGenres) {
         this.genres = newGenres;
     }
 
-    public ArrayList<Genres> getGenres() {
+    public ArrayList<String> getGenres() {
         return this.genres;
     }
 
@@ -113,5 +111,4 @@ public class Movie {
         var data = MAX_SEATS - this.seats.size();
         return data;
     }
-
 }
