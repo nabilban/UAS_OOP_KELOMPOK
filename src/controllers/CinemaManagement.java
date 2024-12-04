@@ -5,9 +5,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import models.*;
+import utils.Initialize;
 import utils.ScreenCleaning;
-import views.Failures;
-import views.Initialize;
 import views.*;
 
 public class CinemaManagement {
@@ -20,9 +19,9 @@ public class CinemaManagement {
         boolean isRunning = true;
         while (isRunning) {
             AudienceView.displayAudienceMenu();
+
             System.out.print("- Input: ");
             int inputOption = getIntInput();
-
             switch (inputOption) {
                 case 1 -> MovieView.displayMovieList(movies);
                 case 2 -> MovieView.displayPlayingMovies(movies);
@@ -43,9 +42,9 @@ public class CinemaManagement {
         boolean isRunning = true;
         while (isRunning) {
             StaffView.displayStaffMenu();
+
             System.out.print("- Input: ");
             int inputOption = getIntInput();
-
             switch (inputOption) {
                 case 1 -> MovieView.displayMovieList(movies);
                 case 2 -> MovieView.displayPlayingMovies(movies);
