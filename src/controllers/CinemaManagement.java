@@ -8,6 +8,7 @@ import models.*;
 import utils.ScreenCleaning;
 import views.Failures;
 import views.Initialize;
+import views.*;
 
 public class CinemaManagement {
     Scanner scanner = new Scanner(System.in);
@@ -15,31 +16,18 @@ public class CinemaManagement {
     public ArrayList<Items> items = new ArrayList<>();
 
     public void registerAsViewer(Audiance audiance) {
-        ScreenCleaning.ClearScreen();
-        System.out.println("--------------------------------");
-        System.out.println("| == Masuk sebagai Penonton == |");
-        System.out.println("--------------------------------");
-
+        AudienceView.displayAudienceHeader();
         boolean isRunning = true;
         while (isRunning) {
-            System.out.println("----------------------------------------");
-            System.out.println("Berikut merupakan opsi yang tersedia:");
-            System.out.println("(1) Daftar film");
-            System.out.println("(2) Daftar film yang sedang tayang");
-            System.out.println("(3) Pesan Tiket");
-            System.out.println("(4) Tampilkan Makanan dan Minuman");
-            System.out.println("(5) Pesan Makanan dan Minuman");
-            System.out.println("(6) Kembali ke menu awal");
-            System.out.println("----------------------------------------");
-
+            AudienceView.displayAudienceMenu();
             System.out.print("- Input: ");
             int inputOption = getIntInput();
 
             switch (inputOption) {
-                case 1 -> showAllMovies();
-                case 2 -> showPlayingMovies();
+                case 1 -> MovieView.displayMovieList(movies);
+                case 2 -> MovieView.displayPlayingMovies(movies);
                 case 3 -> orderTickets(audiance);
-                case 4 -> showAllItems();
+                case 4 -> ItemsView.displayItemsList(items);
                 case 5 -> orderItems(audiance);
                 case 6 -> {
                     ScreenCleaning.ClearScreen();
@@ -51,31 +39,18 @@ public class CinemaManagement {
     }
 
     public void registerAsStaff(Staff staff) {
-        ScreenCleaning.ClearScreen();
-        System.out.println("-------------------------------");
-        System.out.println("| == Masuk sebagai Pegawai == |");
-        System.out.println("-------------------------------");
-
+        StaffView.displayStaffHeader();
         boolean isRunning = true;
         while (isRunning) {
-            System.out.println("----------------------------------------");
-            System.out.println("Berikut merupakan opsi yang tersedia:");
-            System.out.println("(1) Lihat Daftar film");
-            System.out.println("(2) Lihat Daftar film yang sedang tayang");
-            System.out.println("(3) Tambah Daftar film");
-            System.out.println("(4) Tampilkan Makanan dan Minuman");
-            System.out.println("(5) Tambah Makanan dan Minuman");
-            System.out.println("(6) Kembali ke menu awal");
-            System.out.println("----------------------------------------");
-
+            StaffView.displayStaffMenu();
             System.out.print("- Input: ");
             int inputOption = getIntInput();
 
             switch (inputOption) {
-                case 1 -> showAllMovies();
-                case 2 -> showPlayingMovies();
+                case 1 -> MovieView.displayMovieList(movies);
+                case 2 -> MovieView.displayPlayingMovies(movies);
                 case 3 -> addMovies();
-                case 4 -> showAllItems();
+                case 4 -> ItemsView.displayItemsList(items);
                 case 5 -> System.out.println("Tambah Stock Makanan dan Minuman");
                 case 6 -> {
                     ScreenCleaning.ClearScreen();
@@ -87,7 +62,7 @@ public class CinemaManagement {
     }
 
     private void orderTickets(Audiance audiance) {
-        showPlayingMovies();
+        MovieView.displayPlayingMovies(movies);
         if (movies.isEmpty()) {
             Failures.showNoFilmPlayedMessage();
             return;
@@ -136,113 +111,8 @@ public class CinemaManagement {
         System.out.println("Jumlah tiket tersisa: " + selectedMovie.getSeatsAvailable());
     }
 
-    private void showAllMovies() {
-        ScreenCleaning.ClearScreen();
-        System.out.println("---------------------");
-        System.out.println("| == Daftar Film == |");
-        System.out.println("---------------------");
-
-        if (movies.isEmpty()) {
-            Failures.showNoFilmAvailableMessage();
-            return;
-        }
-
-        System.out.println("---------------------------------------------");
-        for (Movie movie : movies) {
-            System.out.println("- ID      : " + movie.getId());
-            System.out.println("- Title   : " + movie.getTitle());
-            System.out.println("- Director: " + movie.getDirector());
-            System.out.println("- On air  : " + movie.getOnAir());
-            System.out.println("- Genres  : " + movie.getGenres());
-            System.out.println("- Rating  : " + movie.getRating());
-            System.out.println("---------------------------------------------");
-        }
-    }
-
-    private void showPlayingMovies() {
-        ScreenCleaning.ClearScreen();
-
-        if (movies.isEmpty()) {
-            for (Movie movie : movies) {
-                var onAirMovies = new ArrayList<>();
-                if (movie.getOnAir()) {
-                    onAirMovies.add(movie);
-                }
-                if (onAirMovies.isEmpty()) {
-                    Failures.showNoFilmPlayedMessage();
-                    return;
-                }
-            }
-            Failures.showNoFilmAvailableMessage();
-            return;
-        }
-
-        ScreenCleaning.ClearScreen();
-        System.out.println("----------------------------------------");
-        System.out.println("| == Daftar Film yang Sedang Tayang == |");
-        System.out.println("----------------------------------------");
-
-        for (Movie movie : movies) {
-            if (movie.getOnAir()) {
-                System.out.println("---------------------------------------------");
-                System.out.println("- ID      : " + movie.getId());
-                System.out.println("- Title   : " + movie.getTitle());
-                System.out.println("- Director: " + movie.getDirector());
-                System.out.println("- Genres  : " + movie.getGenres());
-                System.out.println("- Rating  : " + movie.getRating());
-                System.out.println(
-                        "- seats   : " + movie.getSeatsAvailable() + " available(Maksimum " + movie.getMaxSeats()
-                                + " seats)");
-                System.out.println("---------------------------------------------");
-            }
-        }
-    }
-
-    private void showAllItems() {
-        ScreenCleaning.ClearScreen();
-
-        if (items.isEmpty()) {
-            Failures.showItemNotAvailableMessage();
-            return;
-        }
-
-        ArrayList<Items> outOfStockItems = new ArrayList<>();
-        System.out.println("------------------------");
-        System.out.println("| == Daftar Makanan == |");
-        System.out.println("------------------------");
-        for (Items item : items) {
-            if (item instanceof models.Makanan makanan && makanan.getStok() > 0) {
-                System.out.println("---------------------------------------------");
-                makanan.displayDetails();
-            } else if (item instanceof models.Makanan makanan) {
-                outOfStockItems.add(makanan);
-            }
-        }
-
-        System.out.println("------------------------");
-        System.out.println("| == Daftar Minuman == |");
-        System.out.println("------------------------");
-        for (Items item : items) {
-            if (item instanceof models.Minuman minuman && minuman.getStok() > 0) {
-                System.out.println("---------------------------------------------");
-                minuman.displayDetails();
-            } else if (item instanceof models.Minuman minuman) {
-                outOfStockItems.add(minuman);
-            }
-        }
-
-        if (!outOfStockItems.isEmpty()) {
-            System.out.println("--------------------------------");
-            System.out.println("| == Daftar Menu yang Habis == |");
-            System.out.println("--------------------------------");
-            for (Items item : outOfStockItems) {
-                System.out.println("- " + item.getName() + " (Habis)");
-            }
-        }
-    }
-
     private void orderItems(Audiance audiance) {
-        showAllItems();
+        ItemsView.displayItemsList(items);
         if (items.isEmpty()) {
             Failures.showItemNotAvailableMessage();
             return;
