@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 import initialize.Initialize;
+import models.Staff;
 import failures.Failures;
 
 import utils.ScreenCleaning;
@@ -40,25 +41,41 @@ public class App {
                     System.out.println("----------------------------------------");
 
                     System.out.print("Masukkan nama Anda: ");
-                    var name = scanner.next();
+                    var audiancesName = scanner.next();
 
                     System.out.print("Masukkan usia Anda: ");
-                    var age = scanner.nextInt();
+                    var audiancesAge = scanner.nextInt();
 
                     System.out.print("Masukkan gender Anda: ");
-                    var gender = scanner.next();
+                    var audiancesGender = scanner.next();
 
-                    var audience = new models.Audiance(name, age, gender, false, null);
+                    var audience = new models.Audiance(
+                        audiancesName, 
+                        audiancesAge, 
+                        audiancesGender, 
+                        false, 
+                    null);
                     movieManagement.registerAsViewer(audience);
                     break;
                 case 2:
                     ScreenCleaning.ClearScreen();
-                    // TODO : Masuk sebagai pegawai , Masih belum diimplementasikan
-                    // pegawai bisa tambah stock makanan dan minuman
-                    // pefawai bisa tambah film
-                    // Pegawai bisa melihat log penjualan makanan dan minuman
-                    // Pegawai bisa melihat log penjualan tiket
-                    System.out.println("Masuk sebagai pegawai");
+                    System.out.println("-------------------------------");
+                    System.out.println("| == Masuk sebagai Pegawai == |");
+                    System.out.println("-------------------------------");
+
+                    System.out.println("----------------------------------------");
+
+                    System.out.print("Masukkan nama Anda: ");
+                    var staffsName = scanner.next();
+
+                    System.out.print("Masukkan usia Anda: ");
+                    var staffsAge = scanner.nextInt();
+
+                    System.out.print("Masukkan gender Anda: ");
+                    var staffsGender = scanner.next();
+
+                    var staff = new Staff(staffsName, staffsAge, staffsGender);
+                    movieManagement.registerAsStaff(staff);
                     break;
                 case 3:
                     ScreenCleaning.ClearScreen();

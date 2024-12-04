@@ -119,7 +119,7 @@ public class Initialize {
         return cinemaManagement;
     }
 
-    private static ArrayList<Audiance> getPredefinedAudience() {
+    public static ArrayList<Audiance> getPredefinedAudience() {
         return new ArrayList<>(List.of(
                 new Audiance(
                         "Alice Johnson",

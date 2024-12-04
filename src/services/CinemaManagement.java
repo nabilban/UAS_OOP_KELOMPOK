@@ -1,9 +1,11 @@
 package services;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import failures.Failures;
+import initialize.Initialize;
 import models.*;
 import abstracts.Items;
 import utils.ScreenCleaning;
@@ -40,6 +42,42 @@ public class CinemaManagement {
                 case 3 -> orderTickets(audiance);
                 case 4 -> showAllItems();
                 case 5 -> orderItems(audiance);
+                case 6 -> {
+                    ScreenCleaning.ClearScreen();
+                    isRunning = false;
+                }
+                default -> Failures.showInvalidOptionMessage();
+            }
+        }
+    }
+
+    public void registerAsStaff(Staff staff) {
+        ScreenCleaning.ClearScreen();
+        System.out.println("-------------------------------");
+        System.out.println("| == Masuk sebagai Pegawai == |");
+        System.out.println("-------------------------------");
+
+        boolean isRunning = true;
+        while (isRunning) {
+            System.out.println("----------------------------------------");
+            System.out.println("Berikut merupakan opsi yang tersedia:");
+            System.out.println("(1) Lihat Daftar film");
+            System.out.println("(2) Lihat Daftar film yang sedang tayang");
+            System.out.println("(3) Tambah Daftar film");
+            System.out.println("(4) Tampilkan Makanan dan Minuman");
+            System.out.println("(5) Tambah Makanan dan Minuman");
+            System.out.println("(6) Kembali ke menu awal");
+            System.out.println("----------------------------------------");
+
+            System.out.print("- Input: ");
+            int inputOption = getIntInput();
+
+            switch (inputOption) {
+                case 1 -> showAllMovies();
+                case 2 -> showPlayingMovies();
+                case 3 -> addMovies();
+                case 4 -> showAllItems();
+                case 5 -> System.out.println("Tambah Stock Makanan dan Minuman");
                 case 6 -> {
                     ScreenCleaning.ClearScreen();
                     isRunning = false;
@@ -296,5 +334,46 @@ public class CinemaManagement {
             }
         }
         return null;
+    }
+
+    private void addMovies() {
+        ScreenCleaning.ClearScreen();
+        System.out.println("----------------------------");
+        System.out.println("| == Tambah Daftar Film == |");
+        System.out.println("----------------------------");
+
+        System.out.println("----------------------------------------");
+
+        System.out.print("Masukkan judul film: ");
+        var moviesTitle = scanner.next();
+
+        System.out.print("Masukkan nama director: ");
+        var moviesDirector = scanner.next();
+
+        System.out.print("Apakah film akan ditayangkan: ");
+        var moviesIsOnAir = scanner.nextBoolean();
+
+        System.out.print("Masukkan rating film: ");
+        var moviesRating = scanner.nextInt();
+
+        System.out.print("Masukkan tahun film dibuat: ");
+        var moviesYear = scanner.nextInt();
+
+        System.out.print("Masukkan bulan film dibuat: ");
+        var moviesMonth = scanner.nextInt();
+
+        System.out.print("Masukkan hari film dibuat (dalam angka): ");
+        var moviesDate = scanner.nextInt();
+
+        var movie = new Movie(
+            moviesTitle, 
+            moviesDirector, 
+            LocalDate.of(moviesYear, moviesMonth, moviesDate), 
+            moviesIsOnAir, 
+            null, 
+            moviesRating, 
+            Initialize.getPredefinedAudience()
+        );
+        this.movies.add(movie);
     }
 }
