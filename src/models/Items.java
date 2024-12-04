@@ -1,4 +1,4 @@
-package abstracts;
+package models;
 
 public abstract class Items {
     private static int idCounter = 0;

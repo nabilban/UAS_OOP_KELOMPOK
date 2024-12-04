@@ -1,14 +1,13 @@
-package services;
+package controllers;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import failures.Failures;
-import initialize.Initialize;
 import models.*;
-import abstracts.Items;
 import utils.ScreenCleaning;
+import views.Failures;
+import views.Initialize;
 
 public class CinemaManagement {
     Scanner scanner = new Scanner(System.in);

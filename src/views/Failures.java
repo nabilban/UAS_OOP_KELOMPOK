@@ -1,4 +1,4 @@
-package failures;
+package views;
 
 import utils.ScreenCleaning;
 

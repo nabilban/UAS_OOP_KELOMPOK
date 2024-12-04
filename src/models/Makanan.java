@@ -1,7 +1,5 @@
 package models;
 
-import abstracts.Items;
-
 public class Makanan extends Items {
     private String nama;
     private double harga;

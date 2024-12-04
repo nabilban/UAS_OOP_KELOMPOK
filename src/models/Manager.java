@@ -1,7 +1,5 @@
 package models;
 
-import abstracts.Person;
-
 public class Manager extends Person {
 
     public Manager(

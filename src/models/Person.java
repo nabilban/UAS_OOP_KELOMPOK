@@ -1,4 +1,4 @@
-package abstracts;
+package models;
 
 abstract public class Person {
     private static int idCounter = 0;

@@ -1,15 +1,15 @@
-package initialize;
+package views;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import controllers.CinemaManagement;
 import enums.Genres;
 import models.Audiance;
 import models.Makanan;
 import models.Minuman;
 import models.Movie;
-import services.CinemaManagement;
 
 public class Initialize {
 

@@ -1,7 +1,5 @@
 package models;
 
-import abstracts.Items;
-
 public class Minuman extends Items {
 
     private String nama;

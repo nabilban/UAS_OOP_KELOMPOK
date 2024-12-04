@@ -3,8 +3,6 @@ package models;
 import java.util.ArrayList;
 import java.util.List;
 
-import abstracts.*;
-
 public class Audiance extends Person {
     private boolean haveTicket = false;
     private ArrayList<Items> items = null;

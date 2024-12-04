@@ -1,10 +1,9 @@
 import java.util.Scanner;
 
-import initialize.Initialize;
 import models.Staff;
-import failures.Failures;
-
 import utils.ScreenCleaning;
+import views.Failures;
+import views.Initialize;
 
 public class App {
     public static void main(String[] args) throws Exception {
