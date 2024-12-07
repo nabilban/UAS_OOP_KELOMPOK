@@ -44,8 +44,11 @@ public class App {
 
                     System.out.print("Masukkan usia Anda: ");
                     var audiancesAge = scanner.nextInt();
-                    if (audiancesAge < 0 || scanner.hasNextInt() == false) {
-                        FailuresView.showInvalidInputMessage();
+                    if (audiancesAge < 0 || audiancesAge > 100) {
+                        ScreenCleaning.ClearScreen();
+                        System.out.println("-------------------------------------");
+                        System.out.println("| == Please, enter your real age == |");
+                        System.out.println("-------------------------------------");
                         continue;
                     }
 
