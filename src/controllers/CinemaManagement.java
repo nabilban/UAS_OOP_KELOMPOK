@@ -67,7 +67,7 @@ public class CinemaManagement {
             return;
         }
 
-        System.out.print("Masukkan ID film yang ingin dipesan tiketnya: ");
+        System.out.print("- Masukkan ID film yang ingin dipesan tiketnya: ");
         int movieID = getIntInput();
         MovieModel selectedMovie = findMovieById(movieID);
 
@@ -86,7 +86,7 @@ public class CinemaManagement {
             return;
         }
 
-        System.out.print("Masukkan jumlah tiket yang ingin dipesan: ");
+        System.out.print("- Masukkan jumlah tiket yang ingin dipesan: ");
         int ticketQuantity = getIntInput();
         if (ticketQuantity <= 0 || ticketQuantity > selectedMovie.getSeatsAvailable()) {
             FailuresView.showInvalidInputMessage();
@@ -106,8 +106,10 @@ public class CinemaManagement {
         }
 
         ScreenCleaning.ClearScreen();
-        System.out.println("Tiket berhasil dipesan untuk film: " + selectedMovie.getTitle());
-        System.out.println("Jumlah tiket tersisa: " + selectedMovie.getSeatsAvailable());
+        System.out.println("---------------------------------------------------");
+        System.out.println("| Tiket berhasil dipesan untuk film: " + selectedMovie.getTitle());
+        System.out.println("| Jumlah tiket tersisa: " + selectedMovie.getSeatsAvailable());
+        System.out.println("---------------------------------------------------");
     }
 
     private void orderItems(AudianceModels audiance) {
@@ -117,6 +119,7 @@ public class CinemaManagement {
             return;
         }
 
+        System.out.println("");
         System.out.print("- Masukkan ID item yang ingin dipesan: ");
         int itemID = getIntInput();
         if (itemID == -1) {
@@ -149,8 +152,10 @@ public class CinemaManagement {
             }
 
             ScreenCleaning.ClearScreen();
-            System.out.println("Pesanan berhasil! Sisa stok: " + getRemainingStock(selectedItem));
-            System.out.println("Jumlah item yang ditambahkan ke audiance: " + quantity);
+            System.out.println("---------------------------------------------------");
+            System.out.println("| Pesanan berhasil! Sisa stok: " + getRemainingStock(selectedItem));
+            System.out.println("| Jumlah item yang ditambahkan ke audiance: " + quantity);
+            System.out.println("---------------------------------------------------");
         }
     }
 
