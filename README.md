@@ -1,18 +1,28 @@
-## Getting Started
+# Nova Cinema
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+## Apa itu Nova Cinema
+Nova Cinema adalah program manajemen bioskop, di mana pengguna dapat melihat daftar film, daftar makanan, membeli tiket, dan membeli makanan. Terdapat juga fitur "Masuk sebagai Pegawai", di mana pegawai dapat menambah daftar film, dan menambah stok makanan.
 
-## Folder Structure
+## Fitur-fitur yang Tersedia
+* Masuk sebagai Penonton
+    * Daftar Film
+    * Daftar Film yang Sedang Tayang
+    * Pesan Tiket
+    * Daftar Makanan dan Minuman
+    * Pesan Makanan dan Minuman
+* Masuk sebagai Pegawai
+    * Datar Film
+    * Daftar Film yang Sedang Tayang
+    * Tambah Film
+    * Daftar Makanan dan Minuman
+    * Tambah Makanan dan Minuman
 
-The workspace contains two folders by default, where:
-
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+## Materi dan Konsep yang Diterapkan
+* Class (✓)
+* Inheritance (✓)
+* Polimorfisme (✓)
+* Organisasi Source Code / Package (✓)
+* MVC (✓)
+* Extend (✓)
+* Implement ()
+* Deprecated (✓)
