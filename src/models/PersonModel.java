@@ -1,6 +1,6 @@
 package models;
 
-abstract public class Person {
+abstract public class PersonModel {
     private static int idCounter = 0;
     private int id;
     {
@@ -14,7 +14,7 @@ abstract public class Person {
         return id;
     }
 
-    public Person(String name, int age, String gender) {
+    public PersonModel(String name, int age, String gender) {
         this.name = name;
         this.age = age;
         this.gender = gender;

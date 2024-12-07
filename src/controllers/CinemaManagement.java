@@ -11,10 +11,10 @@ import views.*;
 
 public class CinemaManagement {
     Scanner scanner = new Scanner(System.in);
-    public ArrayList<Movie> movies = new ArrayList<>();
-    public ArrayList<Items> items = new ArrayList<>();
+    public ArrayList<MovieModel> movies = new ArrayList<>();
+    public ArrayList<ItemsModels> items = new ArrayList<>();
 
-    public void registerAsViewer(Audiance audiance) {
+    public void registerAsViewer(AudianceModels audiance) {
         AudienceView.displayAudienceHeader();
         boolean isRunning = true;
         while (isRunning) {
@@ -32,12 +32,12 @@ public class CinemaManagement {
                     ScreenCleaning.ClearScreen();
                     isRunning = false;
                 }
-                default -> Failures.showInvalidOptionMessage();
+                default -> FailuresView.showInvalidOptionMessage();
             }
         }
     }
 
-    public void registerAsStaff(Staff staff) {
+    public void registerAsStaff(StaffModel staff) {
         StaffView.displayStaffHeader();
         boolean isRunning = true;
         while (isRunning) {
@@ -55,41 +55,41 @@ public class CinemaManagement {
                     ScreenCleaning.ClearScreen();
                     isRunning = false;
                 }
-                default -> Failures.showInvalidOptionMessage();
+                default -> FailuresView.showInvalidOptionMessage();
             }
         }
     }
 
-    private void orderTickets(Audiance audiance) {
+    private void orderTickets(AudianceModels audiance) {
         MovieView.displayPlayingMovies(movies);
         if (movies.isEmpty()) {
-            Failures.showNoFilmPlayedMessage();
+            FailuresView.showNoFilmPlayedMessage();
             return;
         }
 
         System.out.print("Masukkan ID film yang ingin dipesan tiketnya: ");
         int movieID = getIntInput();
-        Movie selectedMovie = findMovieById(movieID);
+        MovieModel selectedMovie = findMovieById(movieID);
 
         if (selectedMovie == null) {
-            Failures.showInvalidInputMessage();
+            FailuresView.showInvalidInputMessage();
             return;
         }
 
         if (!selectedMovie.getOnAir()) {
-            Failures.showFilmNotAvailableMessage();
+            FailuresView.showFilmNotAvailableMessage();
             return;
         }
 
         if (selectedMovie.getSeatsAvailable() == 0) {
-            Failures.showFilmOutOfSeatkMessage();
+            FailuresView.showFilmOutOfSeatkMessage();
             return;
         }
 
         System.out.print("Masukkan jumlah tiket yang ingin dipesan: ");
         int ticketQuantity = getIntInput();
         if (ticketQuantity <= 0 || ticketQuantity > selectedMovie.getSeatsAvailable()) {
-            Failures.showInvalidInputMessage();
+            FailuresView.showInvalidInputMessage();
             return;
         }
 
@@ -110,35 +110,35 @@ public class CinemaManagement {
         System.out.println("Jumlah tiket tersisa: " + selectedMovie.getSeatsAvailable());
     }
 
-    private void orderItems(Audiance audiance) {
+    private void orderItems(AudianceModels audiance) {
         ItemsView.displayItemsList(items);
         if (items.isEmpty()) {
-            Failures.showItemNotAvailableMessage();
+            FailuresView.showItemNotAvailableMessage();
             return;
         }
 
         System.out.print("- Masukkan ID item yang ingin dipesan: ");
         int itemID = getIntInput();
         if (itemID == -1) {
-            Failures.showInvalidInputMessage();
+            FailuresView.showInvalidInputMessage();
             return;
         }
 
-        Items selectedItem = findItemById(itemID);
+        ItemsModels selectedItem = findItemById(itemID);
         if (selectedItem == null) {
-            Failures.showItemNotFoundMessage();
+            FailuresView.showItemNotFoundMessage();
             return;
         }
 
         System.out.print("- Masukkan jumlah item yang ingin dipesan: ");
         int quantity = getIntInput();
         if (quantity <= 0) {
-            Failures.showInvalidInputMessage();
+            FailuresView.showInvalidInputMessage();
             return;
         }
 
         if (!processOrder(selectedItem, quantity)) {
-            Failures.showItemOutOfStockMessage();
+            FailuresView.showItemOutOfStockMessage();
         } else {
             if (audiance.getItems() == null) {
                 audiance.setItems(new ArrayList<>());
@@ -154,13 +154,13 @@ public class CinemaManagement {
         }
     }
 
-    private boolean processOrder(Items item, int quantity) {
-        if (item instanceof models.Makanan makanan) {
+    private boolean processOrder(ItemsModels item, int quantity) {
+        if (item instanceof models.FoodsModel makanan) {
             if (makanan.getStok() >= quantity) {
                 makanan.setStok(makanan.getStok() - quantity);
                 return true;
             }
-        } else if (item instanceof models.Minuman minuman) {
+        } else if (item instanceof models.DrinksModel minuman) {
             if (minuman.getStok() >= quantity) {
                 minuman.setStok(minuman.getStok() - quantity);
                 return true;
@@ -169,10 +169,10 @@ public class CinemaManagement {
         return false;
     }
 
-    private int getRemainingStock(Items item) {
-        if (item instanceof models.Makanan makanan) {
+    private int getRemainingStock(ItemsModels item) {
+        if (item instanceof models.FoodsModel makanan) {
             return makanan.getStok();
-        } else if (item instanceof models.Minuman minuman) {
+        } else if (item instanceof models.DrinksModel minuman) {
             return minuman.getStok();
         }
         return 0;
@@ -186,8 +186,8 @@ public class CinemaManagement {
         return scanner.nextInt();
     }
 
-    private Items findItemById(int itemID) {
-        for (Items item : items) {
+    private ItemsModels findItemById(int itemID) {
+        for (ItemsModels item : items) {
             if (item.getId() == itemID) {
                 return item;
             }
@@ -195,8 +195,8 @@ public class CinemaManagement {
         return null;
     }
 
-    private Movie findMovieById(int movieID) {
-        for (Movie movie : movies) {
+    private MovieModel findMovieById(int movieID) {
+        for (MovieModel movie : movies) {
             if (movie.getId() == movieID) {
                 return movie;
             }
@@ -221,14 +221,14 @@ public class CinemaManagement {
         System.out.print("Apakah film akan ditayangkan (cth: true / false): ");
         var moviesIsOnAir = scanner.nextBoolean();
         if (!scanner.hasNextBoolean()) {
-            Failures.showInvalidOptionMessage();
+            FailuresView.showInvalidOptionMessage();
             return;
         }
 
         System.out.print("Masukkan rating film 1 - 10 (cth: 8): ");
         var moviesRating = scanner.nextInt();
         if (moviesRating < 0 || moviesRating > 10 || scanner.hasNextInt() == false) {
-            Failures.showInvalidOptionMessage();
+            FailuresView.showInvalidOptionMessage();
             return;
         }
 
@@ -237,25 +237,25 @@ public class CinemaManagement {
         System.out.print("Masukkan tahun film dibuat: ");
         var moviesYear = scanner.nextInt();
         if (moviesYear <= 0 || scanner.hasNextInt() == false) {
-            Failures.showInvalidOptionMessage();
+            FailuresView.showInvalidOptionMessage();
             return;
         }
 
         System.out.print("Masukkan nomor bulan film dibuat (cth: 12): ");
         var moviesMonth = scanner.nextInt();
         if (moviesMonth <= 0 || moviesMonth > 12 || scanner.hasNextInt() == false) {
-            Failures.showInvalidOptionMessage();
+            FailuresView.showInvalidOptionMessage();
             return;
         }
 
         System.out.print("Masukkan hari film dibuat (dalam angka 0 - 31): ");
         var moviesDate = scanner.nextInt();
         if (moviesDate <= 0 || moviesDate > 31 || scanner.hasNextInt() == false) {
-            Failures.showInvalidOptionMessage();
+            FailuresView.showInvalidOptionMessage();
             return;
         }
 
-        var movie = new Movie(
+        var movie = new MovieModel(
                 moviesTitle,
                 moviesDirector,
                 LocalDate.of(moviesYear, moviesMonth, moviesDate),
@@ -293,7 +293,7 @@ public class CinemaManagement {
         System.out.print("Masukkan jenis item (makanan / minuman): ");
         var itemType = scanner.next();
         if (!itemType.equalsIgnoreCase("makanan") && !itemType.equalsIgnoreCase("minuman")) {
-            Failures.showInvalidInputMessage();
+            FailuresView.showInvalidInputMessage();
             return;
         }
 
@@ -303,20 +303,20 @@ public class CinemaManagement {
         System.out.print("Masukkan harga item (cth: 30000): ");
         var itemPrice = scanner.nextInt();
         if (itemPrice <= 0 || scanner.hasNextInt() == false) {
-            Failures.showInvalidInputMessage();
+            FailuresView.showInvalidInputMessage();
             return;
         }
 
         System.out.print("Masukkan stok item (cth: 30): ");
         var itemStock = scanner.nextInt();
         if (itemStock < 0 || scanner.hasNextInt() == false) {
-            Failures.showInvalidInputMessage();
+            FailuresView.showInvalidInputMessage();
             return;
         }
 
         var item = itemType.equalsIgnoreCase("makanan")
-                ? new Makanan(itemName, itemPrice, itemStock)
-                : new Minuman(itemName, itemPrice, itemStock);
+                ? new FoodsModel(itemName, itemPrice, itemStock)
+                : new DrinksModel(itemName, itemPrice, itemStock);
         this.items.add(item);
     }
 }

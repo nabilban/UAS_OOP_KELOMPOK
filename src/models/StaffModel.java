@@ -1,7 +1,7 @@
 package models;
 
-public class Staff extends Person{
-    public Staff(
+public class StaffModel extends PersonModel{
+    public StaffModel(
         String name,
         int age,
         String gender

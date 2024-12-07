@@ -1,6 +1,6 @@
 package models;
 
-public abstract class Items {
+public abstract class ItemsModels {
     private static int idCounter = 0;
     private int id;
     {
@@ -9,7 +9,7 @@ public abstract class Items {
     private String name;
     private double price;
 
-    public Items(String name, double price) {
+    public ItemsModels(String name, double price) {
         this.name = name;
         this.price = price;
     }

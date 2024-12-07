@@ -1,12 +1,12 @@
 package models;
 
-public class Minuman extends Items {
+public class DrinksModel extends ItemsModels {
 
     private String nama;
     private double harga;
     private int stok;
 
-    public Minuman(String nama, double harga, int stok) {
+    public DrinksModel(String nama, double harga, int stok) {
         super(nama, harga);
         this.nama = nama;
         this.harga = harga;

@@ -1,8 +1,8 @@
 package models;
 
-public class Manager extends Person {
+public class ManagerModel extends PersonModel {
 
-    public Manager(
+    public ManagerModel(
             String name,
             int age,
             String gender) {

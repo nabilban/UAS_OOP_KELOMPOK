@@ -2,29 +2,29 @@ package views;
 
 import java.util.ArrayList;
 
-import models.Items;
+import models.ItemsModels;
 
 import utils.ScreenCleaning;
 
 public class ItemsView {
 
-    public static void displayItemsList(ArrayList<Items> items) {
+    public static void displayItemsList(ArrayList<ItemsModels> items) {
         ScreenCleaning.ClearScreen();
 
         if (items.isEmpty()) {
-            Failures.showItemNotAvailableMessage();
+            FailuresView.showItemNotAvailableMessage();
             return;
         }
 
-        ArrayList<Items> outOfStockItems = new ArrayList<>();
+        ArrayList<ItemsModels> outOfStockItems = new ArrayList<>();
         System.out.println("------------------------");
         System.out.println("| == Daftar Makanan == |");
         System.out.println("------------------------");
-        for (Items item : items) {
-            if (item instanceof models.Makanan makanan && makanan.getStok() > 0) {
+        for (ItemsModels item : items) {
+            if (item instanceof models.FoodsModel makanan && makanan.getStok() > 0) {
                 System.out.println("---------------------------------------------");
                 makanan.displayDetails();
-            } else if (item instanceof models.Makanan makanan) {
+            } else if (item instanceof models.FoodsModel makanan) {
                 outOfStockItems.add(makanan);
             }
         }
@@ -32,11 +32,11 @@ public class ItemsView {
         System.out.println("------------------------");
         System.out.println("| == Daftar Minuman == |");
         System.out.println("------------------------");
-        for (Items item : items) {
-            if (item instanceof models.Minuman minuman && minuman.getStok() > 0) {
+        for (ItemsModels item : items) {
+            if (item instanceof models.DrinksModel minuman && minuman.getStok() > 0) {
                 System.out.println("---------------------------------------------");
                 minuman.displayDetails();
-            } else if (item instanceof models.Minuman minuman) {
+            } else if (item instanceof models.DrinksModel minuman) {
                 outOfStockItems.add(minuman);
             }
         }
@@ -45,7 +45,7 @@ public class ItemsView {
             System.out.println("--------------------------------");
             System.out.println("| == Daftar Menu yang Habis == |");
             System.out.println("--------------------------------");
-            for (Items item : outOfStockItems) {
+            for (ItemsModels item : outOfStockItems) {
                 System.out.println("- " + item.getName() + " (Habis)");
             }
         }

@@ -5,24 +5,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 import controllers.CinemaManagement;
-import models.Audiance;
-import models.Makanan;
-import models.Minuman;
-import models.Movie;
+import models.AudianceModels;
+import models.FoodsModel;
+import models.DrinksModel;
+import models.MovieModel;
 
 public class Initialize {
 
         public static CinemaManagement initializeData() {
                 CinemaManagement cinemaManagement = new CinemaManagement();
-                cinemaManagement.items.add(new Makanan("PopCorn", 30000, 10));
-                cinemaManagement.items.add(new Makanan("Nachos", 25000, 15));
-                cinemaManagement.items.add(new Makanan("Hot Dog", 20000, 0));
-                cinemaManagement.items.add(new Minuman("Soda", 15000, 0));
-                cinemaManagement.items.add(new Minuman("Coffee", 20000, 25));
-                cinemaManagement.items.add(new Minuman("Tea", 15000, 20));
-                cinemaManagement.items.add(new Minuman("Juice", 25000, 0));
+                cinemaManagement.items.add(new FoodsModel("PopCorn", 30000, 10));
+                cinemaManagement.items.add(new FoodsModel("Nachos", 25000, 15));
+                cinemaManagement.items.add(new FoodsModel("Hot Dog", 20000, 0));
+                cinemaManagement.items.add(new DrinksModel("Soda", 15000, 0));
+                cinemaManagement.items.add(new DrinksModel("Coffee", 20000, 25));
+                cinemaManagement.items.add(new DrinksModel("Tea", 15000, 20));
+                cinemaManagement.items.add(new DrinksModel("Juice", 25000, 0));
                 cinemaManagement.movies.add(
-                                new Movie(
+                                new MovieModel(
                                                 "Star Wars: Episode I - The Phantom Menace",
                                                 "George Lucas",
                                                 LocalDate.of(1999, 5, 19),
@@ -36,7 +36,7 @@ public class Initialize {
                                                 new ArrayList<>(getPredefinedAudience())));
 
                 cinemaManagement.movies.add(
-                                new Movie(
+                                new MovieModel(
                                                 "Star Wars: Episode II - Attack of the Clones",
                                                 "George Lucas",
                                                 LocalDate.of(2002, 5, 16),
@@ -50,7 +50,7 @@ public class Initialize {
                                                 new ArrayList<>(getPredefinedAudience())));
 
                 cinemaManagement.movies.add(
-                                new Movie(
+                                new MovieModel(
                                                 "Star Wars: Episode III - Revenge of the Sith",
                                                 "George Lucas",
                                                 LocalDate.of(2005, 5, 12),
@@ -64,7 +64,7 @@ public class Initialize {
                                                 new ArrayList<>(getPredefinedAudience())));
 
                 cinemaManagement.movies.add(
-                                new Movie(
+                                new MovieModel(
                                                 "Frozen",
                                                 "Chris Buck, Jennifer Lee",
                                                 LocalDate.of(2013, 11, 29),
@@ -77,7 +77,7 @@ public class Initialize {
                                                 new ArrayList<>(getPredefinedAudience())));
 
                 cinemaManagement.movies.add(
-                                new Movie(
+                                new MovieModel(
                                                 "Frozen II",
                                                 "Chris Buck, Jennifer Lee",
                                                 LocalDate.of(2019, 11, 20),
@@ -90,7 +90,7 @@ public class Initialize {
                                                 new ArrayList<>(getPredefinedAudience())));
 
                 cinemaManagement.movies.add(
-                                new Movie(
+                                new MovieModel(
                                                 "Pirates of Silicon Valley",
                                                 "Martyn Burke",
                                                 LocalDate.of(1999, 06, 20),
@@ -103,7 +103,7 @@ public class Initialize {
                                                 new ArrayList<>(getPredefinedAudience())));
 
                 cinemaManagement.movies.add(
-                                new Movie(
+                                new MovieModel(
                                                 "The Imitationn Game",
                                                 "Morten Tyldum",
                                                 LocalDate.of(2015, 01, 22),
@@ -118,50 +118,50 @@ public class Initialize {
                 return cinemaManagement;
         }
 
-        public static ArrayList<Audiance> getPredefinedAudience() {
+        public static ArrayList<AudianceModels> getPredefinedAudience() {
                 return new ArrayList<>(List.of(
-                                new Audiance(
+                                new AudianceModels(
                                                 "Alice Johnson",
                                                 25,
                                                 "Female",
                                                 true,
                                                 new ArrayList<>(List.of(
-                                                                new Makanan("PopCorn", 30000, 1),
-                                                                new Minuman("Coffee", 20000, 1)))),
-                                new Audiance(
+                                                                new FoodsModel("PopCorn", 30000, 1),
+                                                                new DrinksModel("Coffee", 20000, 1)))),
+                                new AudianceModels(
                                                 "Bob Smith",
                                                 30,
                                                 "Male",
                                                 false,
                                                 new ArrayList<>(List.of(
-                                                                new Makanan("Nachos", 25000, 2)))),
-                                new Audiance(
+                                                                new FoodsModel("Nachos", 25000, 2)))),
+                                new AudianceModels(
                                                 "Catherine Lee",
                                                 18,
                                                 "Female",
                                                 true,
                                                 new ArrayList<>(List.of(
-                                                                new Minuman("Tea", 15000, 1)))),
-                                new Audiance(
+                                                                new DrinksModel("Tea", 15000, 1)))),
+                                new AudianceModels(
                                                 "David Brown",
                                                 40,
                                                 "Male",
                                                 false,
                                                 new ArrayList<>()),
-                                new Audiance(
+                                new AudianceModels(
                                                 "Evelyn White",
                                                 22,
                                                 "Female",
                                                 true,
                                                 new ArrayList<>(List.of(
-                                                                new Minuman("Juice", 25000, 1),
-                                                                new Minuman("Tea", 15000, 1)))),
-                                new Audiance(
+                                                                new DrinksModel("Juice", 25000, 1),
+                                                                new DrinksModel("Tea", 15000, 1)))),
+                                new AudianceModels(
                                                 "Frank Green",
                                                 35,
                                                 "Male",
                                                 true,
                                                 new ArrayList<>(List.of(
-                                                                new Makanan("Hot Dog", 20000, 1))))));
+                                                                new FoodsModel("Hot Dog", 20000, 1))))));
         }
 }

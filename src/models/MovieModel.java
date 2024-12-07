@@ -3,7 +3,7 @@ package models;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Movie {
+public class MovieModel {
     private static int idCounter = 0;
     private int id;
     {
@@ -15,17 +15,17 @@ public class Movie {
     private boolean onAir;
     private int rating;
     private ArrayList<String> genres;
-    private ArrayList<Audiance> seats;
+    private ArrayList<AudianceModels> seats;
     private final int MAX_SEATS = 30;
 
-    public Movie(
+    public MovieModel(
             String name,
             String director,
             LocalDate releaseDate,
             boolean onAir,
             ArrayList<String> genres,
             int rating,
-            ArrayList<Audiance> seats) {
+            ArrayList<AudianceModels> seats) {
         this.title = name;
         this.director = director;
         this.releaseDate = releaseDate;
@@ -87,7 +87,7 @@ public class Movie {
         return this.genres;
     }
 
-    public void setSeats(ArrayList<Audiance> newSeats) {
+    public void setSeats(ArrayList<AudianceModels> newSeats) {
         if (newSeats.size() <= MAX_SEATS) {
             this.seats = newSeats;
         } else {
@@ -99,7 +99,7 @@ public class Movie {
         return this.MAX_SEATS;
     }
 
-    public void addSeat(Audiance audiance) {
+    public void addSeat(AudianceModels audiance) {
         if (this.seats.size() < MAX_SEATS) {
             this.seats.add(audiance);
         } else {

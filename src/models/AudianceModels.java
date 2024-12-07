@@ -3,16 +3,16 @@ package models;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Audiance extends Person {
+public class AudianceModels extends PersonModel {
     private boolean haveTicket = false;
-    private ArrayList<Items> items = null;
+    private ArrayList<ItemsModels> items = null;
 
-    public Audiance(
+    public AudianceModels(
             String name,
             int age,
             String gender,
             boolean haveTicket,
-            ArrayList<Items> items) {
+            ArrayList<ItemsModels> items) {
         super(name, age, gender);
         this.haveTicket = haveTicket;
         this.items = items;
@@ -28,7 +28,7 @@ public class Audiance extends Person {
         System.out.println("Ticket: " + this.haveTicket);
         if (this.items != null) {
             System.out.println("Items : ");
-            for (Items item : this.items) {
+            for (ItemsModels item : this.items) {
                 item.displayDetails();
             }
         }
@@ -43,11 +43,11 @@ public class Audiance extends Person {
         return this.haveTicket;
     }
 
-    public void setItems(ArrayList<Items> items) {
+    public void setItems(ArrayList<ItemsModels> items) {
         this.items = items;
     }
 
-    public List<Items> getItems() {
+    public List<ItemsModels> getItems() {
         return this.items;
     }
 

@@ -2,7 +2,7 @@ package views;
 
 import utils.ScreenCleaning;
 
-public class Failures {
+public class FailuresView {
 
     public static void showInvalidInputMessage() {
         ScreenCleaning.ClearScreen();

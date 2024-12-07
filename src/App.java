@@ -1,9 +1,9 @@
 import java.util.Scanner;
 
-import models.Staff;
+import models.StaffModel;
 import utils.Initialize;
 import utils.ScreenCleaning;
-import views.Failures;
+import views.FailuresView;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -45,14 +45,14 @@ public class App {
                     System.out.print("Masukkan usia Anda: ");
                     var audiancesAge = scanner.nextInt();
                     if (audiancesAge < 0 || scanner.hasNextInt() == false) {
-                        Failures.showInvalidInputMessage();
+                        FailuresView.showInvalidInputMessage();
                         continue;
                     }
 
                     System.out.print("Masukkan gender Anda: ");
                     var audiancesGender = scanner.next();
 
-                    var audience = new models.Audiance(
+                    var audience = new models.AudianceModels(
                             audiancesName,
                             audiancesAge,
                             audiancesGender,
@@ -77,7 +77,7 @@ public class App {
                     System.out.print("Masukkan gender Anda: ");
                     var staffsGender = scanner.next();
 
-                    var staff = new Staff(staffsName, staffsAge, staffsGender);
+                    var staff = new StaffModel(staffsName, staffsAge, staffsGender);
                     movieManagement.registerAsStaff(staff);
                     break;
                 case 3:
@@ -88,7 +88,7 @@ public class App {
                     isRunning = false;
                     break;
                 default:
-                    Failures.showInvalidOptionMessage();
+                    FailuresView.showInvalidOptionMessage();
                     continue;
             }
         }

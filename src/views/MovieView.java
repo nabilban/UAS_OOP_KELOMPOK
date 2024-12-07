@@ -2,11 +2,11 @@ package views;
 
 import java.util.ArrayList;
 
-import models.Movie;
+import models.MovieModel;
 import utils.ScreenCleaning;
 
 public class MovieView {
-    public static void displayMovieList(ArrayList<Movie> movies) {
+    public static void displayMovieList(ArrayList<MovieModel> movies) {
 
         ScreenCleaning.ClearScreen();
         System.out.println("---------------------");
@@ -14,12 +14,12 @@ public class MovieView {
         System.out.println("---------------------");
 
         if (movies.isEmpty()) {
-            Failures.showNoFilmAvailableMessage();
+            FailuresView.showNoFilmAvailableMessage();
             return;
         }
 
         System.out.println("---------------------------------------------");
-        for (Movie movie : movies) {
+        for (MovieModel movie : movies) {
             System.out.println("- ID      : " + movie.getId());
             System.out.println("- Title   : " + movie.getTitle());
             System.out.println("- Director: " + movie.getDirector());
@@ -30,21 +30,21 @@ public class MovieView {
         }
     }
 
-    public static void displayPlayingMovies(ArrayList<Movie> movies) {
+    public static void displayPlayingMovies(ArrayList<MovieModel> movies) {
         ScreenCleaning.ClearScreen();
 
         if (movies.isEmpty()) {
-            for (Movie movie : movies) {
+            for (MovieModel movie : movies) {
                 var onAirMovies = new ArrayList<>();
                 if (movie.getOnAir()) {
                     onAirMovies.add(movie);
                 }
                 if (onAirMovies.isEmpty()) {
-                    Failures.showNoFilmPlayedMessage();
+                    FailuresView.showNoFilmPlayedMessage();
                     return;
                 }
             }
-            Failures.showNoFilmAvailableMessage();
+            FailuresView.showNoFilmAvailableMessage();
             return;
         }
 
@@ -53,7 +53,7 @@ public class MovieView {
         System.out.println("| == Daftar Film yang Sedang Tayang == |");
         System.out.println("----------------------------------------");
 
-        for (Movie movie : movies) {
+        for (MovieModel movie : movies) {
             if (movie.getOnAir()) {
                 System.out.println("---------------------------------------------");
                 System.out.println("- ID      : " + movie.getId());
