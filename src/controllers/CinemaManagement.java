@@ -13,6 +13,7 @@ public class CinemaManagement {
     Scanner scanner = new Scanner(System.in);
     public ArrayList<MovieModel> movies = new ArrayList<>();
     public ArrayList<ItemsModels> items = new ArrayList<>();
+    CreditView credit = new CreditView();
 
     public void registerAsViewer(AudianceModels audiance) {
         AudienceView.displayAudienceHeader();
@@ -323,5 +324,38 @@ public class CinemaManagement {
                 ? new FoodsModel(itemName, itemPrice, itemStock)
                 : new DrinksModel(itemName, itemPrice, itemStock);
         this.items.add(item);
+    }
+
+    public void viewCredit() {
+        ScreenCleaning.ClearScreen();
+        System.out.println("----------------");
+        System.out.println("| == Credit == |");
+        System.out.println("----------------");
+
+        boolean isRunning = true;
+        while (isRunning) {
+            System.out.println("----------------------------------------");
+            System.out.println("Berikut merupakan opsi yang tersedia:");
+            System.out.println("(1) Anggota Kelompok");
+            System.out.println("(2) Definisi Program");
+            System.out.println("(3) Fitur-fitur yang tersedia");
+            System.out.println("(4) Materi atau Konsep yang digunakan");
+            System.out.println("(5) Kembali ke menu awal");
+            System.out.println("----------------------------------------");
+
+            System.out.print("- Input: ");
+            int inputOption = getIntInput();
+            switch (inputOption) {
+                case 1 -> credit.groupMembers();
+                case 2 -> credit.programsDefinition();
+                case 3 -> credit.availableFeatures();
+                case 4 -> credit.conceptsUsed();
+                case 5 -> {
+                    ScreenCleaning.ClearScreen();
+                    isRunning = false;
+                }
+                default -> FailuresView.showInvalidOptionMessage();
+            }
+        }
     }
 }

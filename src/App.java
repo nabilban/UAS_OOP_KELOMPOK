@@ -24,7 +24,8 @@ public class App {
             System.out.println("Berikut merupakan opsi yang tersedia");
             System.out.println("(1). Masuk sebagai penonton");
             System.out.println("(2). Masuk sebagai pegawai");
-            System.out.println("(3). Keluar dari program");
+            System.out.println("(3). About Us (Credit)");
+            System.out.println("(4). Keluar dari program");
             System.out.println("----------------------------------------");
 
             System.out.print("- Input: ");
@@ -84,6 +85,10 @@ public class App {
                     movieManagement.registerAsStaff(staff);
                     break;
                 case 3:
+                    ScreenCleaning.ClearScreen();
+                    movieManagement.viewCredit();
+                    break;
+                case 4:
                     ScreenCleaning.ClearScreen();
                     System.out.println("-----------------------------");
                     System.out.println("| Telah keluar dari program |");

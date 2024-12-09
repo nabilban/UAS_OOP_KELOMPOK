@@ -21,5 +21,4 @@ public class StaffView {
         System.out.println("(6) Kembali ke menu awal");
         System.out.println("----------------------------------------");
     }
-
 }
