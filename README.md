@@ -16,13 +16,18 @@ Nova Cinema adalah program manajemen bioskop, di mana pengguna dapat melihat daf
     * Tambah Film
     * Daftar Makanan dan Minuman
     * Tambah Makanan dan Minuman
+* About Us (Credit)
+    * Anggota Kelompok
+    * Definisi Program
+    * Fitur-fitur yang Tersedia
+    * Materi atau Konsep yang Digunakan
 
-## Materi dan Konsep yang Diterapkan
+## Materi atau Konsep yang Diterapkan
 * Class (✓)
 * Inheritance (✓)
 * Polimorfisme (✓)
 * Organisasi Source Code / Package (✓)
 * MVC (✓)
 * Extend (✓)
-* Implement ()
+* Implement (✓)
 * Deprecated (✓)
