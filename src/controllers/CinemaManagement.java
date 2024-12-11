@@ -226,7 +226,7 @@ public class CinemaManagement {
 
         System.out.print("Apakah film akan ditayangkan (cth: true / false): ");
         var moviesIsOnAir = scanner.nextBoolean();
-        if (!scanner.hasNextBoolean()) {
+        if (moviesIsOnAir != true && moviesIsOnAir != false) {
             FailuresView.showInvalidOptionMessage();
             return;
         }
