@@ -296,26 +296,26 @@ public class CinemaManagement {
 
         System.out.println("----------------------------------------");
 
-        System.out.print("Masukkan jenis item (makanan / minuman): ");
+        System.out.print("- Masukkan jenis item (makanan / minuman): ");
         var itemType = scanner.next();
         if (!itemType.equalsIgnoreCase("makanan") && !itemType.equalsIgnoreCase("minuman")) {
             FailuresView.showInvalidInputMessage();
             return;
         }
 
-        System.out.print("Masukkan nama item: ");
+        System.out.print("- Masukkan nama item: ");
         var itemName = scanner.next();
 
-        System.out.print("Masukkan harga item (cth: 30000): ");
+        System.out.print("- Masukkan harga item (cth: 30000): ");
         var itemPrice = scanner.nextInt();
-        if (itemPrice <= 0 || scanner.hasNextInt() == false) {
+        if (itemPrice <= 0) {
             FailuresView.showInvalidInputMessage();
             return;
         }
 
-        System.out.print("Masukkan stok item (cth: 30): ");
+        System.out.print("- Masukkan stok item (cth: 30): ");
         var itemStock = scanner.nextInt();
-        if (itemStock < 0 || scanner.hasNextInt() == false) {
+        if (itemStock < 0) {
             FailuresView.showInvalidInputMessage();
             return;
         }
