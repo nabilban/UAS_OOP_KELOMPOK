@@ -53,7 +53,7 @@ public class App {
                         continue;
                     }
 
-                    System.out.print("Masukkan gender Anda: ");
+                    System.out.print("Masukkan gender Anda (Pria atau Wanita): ");
                     var audiancesGender = scanner.next();
 
                     var audience = new models.AudianceModels(
@@ -78,7 +78,7 @@ public class App {
                     System.out.print("Masukkan usia Anda: ");
                     var staffsAge = scanner.nextInt();
 
-                    System.out.print("Masukkan gender Anda: ");
+                    System.out.print("Masukkan gender Anda (Pria atau Wanita): ");
                     var staffsGender = scanner.next();
 
                     var staff = new StaffModel(staffsName, staffsAge, staffsGender);

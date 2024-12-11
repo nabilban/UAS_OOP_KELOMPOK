@@ -218,45 +218,45 @@ public class CinemaManagement {
 
         System.out.println("----------------------------------------");
 
-        System.out.print("Masukkan judul film: ");
+        System.out.print("- Masukkan judul film: ");
         var moviesTitle = scanner.next();
 
-        System.out.print("Masukkan nama director: ");
+        System.out.print("- Masukkan nama director: ");
         var moviesDirector = scanner.next();
 
-        System.out.print("Apakah film akan ditayangkan (cth: true / false): ");
+        System.out.print("- Apakah film akan ditayangkan (cth: true / false): ");
         var moviesIsOnAir = scanner.nextBoolean();
         if (moviesIsOnAir != true && moviesIsOnAir != false) {
             FailuresView.showInvalidOptionMessage();
             return;
         }
 
-        System.out.print("Masukkan rating film 1 - 10 (cth: 8): ");
+        System.out.print("- Masukkan rating film 1 - 10 (cth: 8): ");
         var moviesRating = scanner.nextInt();
-        if (moviesRating < 0 || moviesRating > 10 || scanner.hasNextInt() == false) {
+        if (moviesRating < 0 || moviesRating > 10) {
             FailuresView.showInvalidOptionMessage();
             return;
         }
 
         var moviesGenres = addGenres();
 
-        System.out.print("Masukkan tahun film dibuat: ");
+        System.out.print("- Masukkan tahun film dibuat: ");
         var moviesYear = scanner.nextInt();
-        if (moviesYear <= 0 || scanner.hasNextInt() == false) {
+        if (moviesYear <= 0) {
             FailuresView.showInvalidOptionMessage();
             return;
         }
 
-        System.out.print("Masukkan nomor bulan film dibuat (cth: 12): ");
+        System.out.print("- Masukkan nomor bulan film dibuat (cth: 12): ");
         var moviesMonth = scanner.nextInt();
-        if (moviesMonth <= 0 || moviesMonth > 12 || scanner.hasNextInt() == false) {
+        if (moviesMonth <= 0 || moviesMonth > 12) {
             FailuresView.showInvalidOptionMessage();
             return;
         }
 
-        System.out.print("Masukkan hari film dibuat (dalam angka 0 - 31): ");
+        System.out.print("- Masukkan hari film dibuat (dalam angka 0 - 31): ");
         var moviesDate = scanner.nextInt();
-        if (moviesDate <= 0 || moviesDate > 31 || scanner.hasNextInt() == false) {
+        if (moviesDate <= 0 || moviesDate > 31) {
             FailuresView.showInvalidOptionMessage();
             return;
         }
@@ -275,9 +275,9 @@ public class CinemaManagement {
     private ArrayList<String> addGenres() {
         var genres = new ArrayList<String>();
         boolean isRunning = true;
-        System.out.println("Masukkan genre film (ketik 'selesai' untuk selesai): ");
+        System.out.println("- Masukkan genre film (ketik 'selesai' untuk selesai): ");
         while (isRunning) {
-            System.out.print("Masukkan genre: ");
+            System.out.print("- Masukkan genre: ");
             var input = scanner.next();
             if (!input.equalsIgnoreCase("selesai")) {
                 genres.add(input);
