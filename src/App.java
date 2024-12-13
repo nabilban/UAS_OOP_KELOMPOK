@@ -38,7 +38,9 @@ public class App {
                     System.out.println("| == Masuk sebagai Penonton == |");
                     System.out.println("--------------------------------");
 
-                    System.out.println("----------------------------------------");
+                    System.out.println("----------------------------------------------------");
+                    System.out.println("| Note: Mohon, gunakan '_' sebagai pengganti spasi |");
+                    System.out.println("----------------------------------------------------");
 
                     System.out.print("Masukkan nama Anda: ");
                     var audiancesName = scanner.next();
@@ -70,7 +72,9 @@ public class App {
                     System.out.println("| == Masuk sebagai Pegawai == |");
                     System.out.println("-------------------------------");
 
-                    System.out.println("----------------------------------------");
+                    System.out.println("----------------------------------------------------");
+                    System.out.println("| Note: Mohon, gunakan '_' sebagai pengganti spasi |");
+                    System.out.println("----------------------------------------------------");
 
                     System.out.print("Masukkan nama Anda: ");
                     var staffsName = scanner.next();
