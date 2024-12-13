@@ -14,7 +14,7 @@ public class DrinksModel extends ItemsModels {
     }
 
     public String getNama() {
-        return nama;
+        return nama.replace("_", " ");
     }
 
     public void setNama(String nama) {

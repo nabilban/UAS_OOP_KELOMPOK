@@ -44,7 +44,7 @@ public class MovieModel {
     }
 
     public String getTitle() {
-        return this.title;
+        return this.title.replace("_", " ");
     }
 
     public void setDirector(String newDirector) {

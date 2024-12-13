@@ -15,7 +15,7 @@ public abstract class ItemsModels {
     }
 
     public String getName() {
-        return name;
+        return name.replace("_", " ");
     }
 
     public double getPrice() {

@@ -91,7 +91,8 @@ public class CreditView implements SubCredit {
         | * M. Farhan Nabil           (23051204372) | 
         | * Naufal Andrianto Nugraha  (23051204373) | 
         | * Rafi Arnandha Pramudianto (23051204374) | 
-        | * Lukman Adi Wijaya         (23051204380) | 
+        | * Lukman Adi Wijaya         (23051204378) | 
+        | * Ivan Pria Sudrajad        (23051204389) | 
         ---------------------------------------------
         """);
     }

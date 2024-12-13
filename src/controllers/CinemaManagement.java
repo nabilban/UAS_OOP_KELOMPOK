@@ -272,6 +272,7 @@ public class CinemaManagement {
                 moviesRating,
                 Initialize.getPredefinedAudience());
         this.movies.add(movie);
+        ScreenCleaning.ClearScreen();
     }
 
     private ArrayList<String> addGenres() {
