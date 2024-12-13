@@ -216,7 +216,9 @@ public class CinemaManagement {
         System.out.println("| == Tambah Daftar Film == |");
         System.out.println("----------------------------");
 
-        System.out.println("----------------------------------------");
+        System.out.println("----------------------------------------------------");
+        System.out.println("| Note: Mohon, gunakan '_' sebagai pengganti spasi |");
+        System.out.println("----------------------------------------------------");
 
         System.out.print("- Masukkan judul film: ");
         var moviesTitle = scanner.next();
@@ -294,7 +296,9 @@ public class CinemaManagement {
         System.out.println("| == Tambah Daftar Item == |");
         System.out.println("----------------------------");
 
-        System.out.println("----------------------------------------");
+        System.out.println("----------------------------------------------------");
+        System.out.println("| Note: Mohon, gunakan '_' sebagai pengganti spasi |");
+        System.out.println("----------------------------------------------------");
 
         System.out.print("- Masukkan jenis item (makanan / minuman): ");
         var itemType = scanner.next();
