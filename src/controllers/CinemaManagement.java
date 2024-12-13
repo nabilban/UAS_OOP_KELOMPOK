@@ -303,7 +303,7 @@ public class CinemaManagement {
             return;
         }
 
-        System.out.print("- Masukkan nama item: ");
+        System.out.print("- Masukkan nama item (mohon, untuk nama film, gunakan underscore sebagai ganti spasi): ");
         var itemName = scanner.next();
 
         System.out.print("- Masukkan harga item (cth: 30000): ");
