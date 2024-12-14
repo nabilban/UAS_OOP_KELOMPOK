@@ -242,21 +242,21 @@ public class CinemaManagement {
 
         var moviesGenres = addGenres();
 
-        System.out.print("- Masukkan tahun film dibuat: ");
+        System.out.print("- Masukkan tahun film direlase: ");
         var moviesYear = scanner.nextInt();
         if (moviesYear <= 0) {
             FailuresView.showInvalidOptionMessage();
             return;
         }
 
-        System.out.print("- Masukkan nomor bulan film dibuat (cth: 12): ");
+        System.out.print("- Masukkan nomor bulan film direlease (cth: 12): ");
         var moviesMonth = scanner.nextInt();
         if (moviesMonth <= 0 || moviesMonth > 12) {
             FailuresView.showInvalidOptionMessage();
             return;
         }
 
-        System.out.print("- Masukkan hari film dibuat (dalam angka 0 - 31): ");
+        System.out.print("- Masukkan hari film direlease (dalam angka 0 - 31): ");
         var moviesDate = scanner.nextInt();
         if (moviesDate <= 0 || moviesDate > 31) {
             FailuresView.showInvalidOptionMessage();
