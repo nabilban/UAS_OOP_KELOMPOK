@@ -1,7 +1,7 @@
 # Nova Cinema
 
 ## Apa itu Nova Cinema
-Nova Cinema adalah program manajemen bioskop, di mana pengguna dapat melihat daftar film, daftar makanan, membeli tiket, dan membeli makanan. Terdapat juga fitur "Masuk sebagai Pegawai", di mana pegawai dapat menambah daftar film, dan menambah stok makanan.
+Nove Cinema adalah program manajemen bioskop, di mana pengguna dapat masuk sebagai penonton, yang memiliki fitur-fitur, seperti melihat daftar film, melihat daftar makanan, membeli tiket dan membeli makanan. Pengguna juga dapat masuk sebagai pegawai, di mana pegawai dapat menambah film dan menambah stok makanan. Dan fitur yang terkahir melihat credit
 
 ## Fitur-fitur yang Tersedia
 * Masuk sebagai Penonton
